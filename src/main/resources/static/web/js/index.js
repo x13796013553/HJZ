@@ -37,6 +37,8 @@ $(function () {
 // 获取屏幕分辨率动态改变背景大小
 function changeSc() {
     var clientWidth = window.screen.width;
+    console.log("当前分辨率是："+clientWidth);
+
     if (clientWidth == 1920) {
         $("head").append("<link rel=\"stylesheet\" href=\"/static/web/css/style.css\">");
     }else if (clientWidth == 1600) {

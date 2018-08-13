@@ -20,7 +20,7 @@ p {
 .main-box {
     display: inline-block;
     width: 100%; /*图片自适应的父容器的宽*/
-    height: 93%; /*图片自适应的父容器的高*/
+    height: 96%; /*图片自适应的父容器的高*/
     background: url(/static/web/img/bg.jpg) no-repeat top center fixed;
     background-size: 100%;
     overflow: hidden;
@@ -35,15 +35,15 @@ p {
     width: 100%;
     background-color: #5c9cc3;
     /*position: absolute;*/
-    margin-top: -4px;
-    height: 50px;
+    margin-top: -5px;
+    height: 40px;
 }
 
 .bottom p {
     text-align: center;
     color: #FFFFFF;
-    font-size: 14px;
-    padding-top: 7px;
+    font-size: 12px;
+    padding-top: 3px;
 }
 
 .top {
