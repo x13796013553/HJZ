@@ -30,7 +30,7 @@
 </div>
 
 <!-- table -->
-<table class="layui-table" lay-filter="table" lay-data="{height: 'full-200', cellMinWidth: 80, page: true, limit:12}">
+<table class="layui-table" lay-filter="table" lay-data="{height: 'full-200', cellMinWidth: 80, page: true, limit:12,id:'user_table'}">
     <thead>
     <tr>
         <th lay-data="{type:'checkbox'}">ID</th>
@@ -78,7 +78,8 @@
 
         //表初始化
         createTable();
-
+        
+        
         // 获取选中行
         table.on('checkbox(table)', function (obj) {
             console.log(obj.checked); //当前是否选中状态
@@ -124,20 +125,24 @@
 
         var $ = layui.$, active = {
             getCheckData: function () { //获取选中数据
-                var checkStatus = table.checkStatus('idTest')
+                var checkStatus = table.checkStatus('user_table')
                     , data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
+                return JSON.stringify(data);
             }
             , getCheckLength: function () { //获取选中数目
-                var checkStatus = table.checkStatus('idTest')
+                var checkStatus = table.checkStatus('user_table')
                     , data = checkStatus.data;
                 layer.msg('选中了：' + data.length + ' 个');
             }
             , isAll: function () { //验证是否全选
-                var checkStatus = table.checkStatus('idTest');
+                var checkStatus = table.checkStatus('user_table');
                 layer.msg(checkStatus.isAll ? '全选' : '未全选')
             }
         };
+        $("#btn-delete-all").click(function () {
+            console.log("这是获取到的数据"+active.getCheckData());
+        });
+        
     });
 
     function addUser(){
