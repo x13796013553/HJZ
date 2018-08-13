@@ -32,10 +32,12 @@ public class FileController {
                 String nowString = ConvertUtil.getNowString("yyyy-MM-dd");
                 Map mapAdd = FileUtil.simUpload("/WEB-INF/classes/static/admin/upload/file/" + nowString, file[i], request,
                         IPUtils.getIP(URI.create(request.getRequestURL().toString())) + "/WEB-INF/classes/static/admin/upload/file/" + nowString);
+
             }
             map.put("status", "1");
             return map;
         } catch (Exception e) {
+
             map.put("msg", "上传出错了！！" + e.getMessage());
             System.out.println("上传出错了！！" + e.getMessage());
             return map;
