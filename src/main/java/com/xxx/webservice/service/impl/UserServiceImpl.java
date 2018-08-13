@@ -179,6 +179,7 @@ public class UserServiceImpl implements UserService {
             // 权限组赋值
             // 获取权限数据
             XGroup xGroup = groupMapper.selectByPrimaryKey(user.getGroupId());
+            user.setGroupId(xGroup.getGroupId());
             user.setGroupName(xGroup.getGroupName());
 
             userMapper.updateByPrimaryKeySelective(user);

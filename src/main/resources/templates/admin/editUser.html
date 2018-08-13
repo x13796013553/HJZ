@@ -64,7 +64,6 @@
         </div>
     </div>
 
-
     <div class="layui-form-item">
         <div class="layui-input-block">
             <a class="layui-btn" id="subMitAdd" onclick="subMitAdd()">立即提交</a>
@@ -80,8 +79,6 @@
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
 <script>
-
-
     layui.use(['form', 'layedit', 'laydate'], function () {
         var $ = layui.jquery;
         var form = layui.form
@@ -107,11 +104,8 @@
                 }
                 $("#groupId").find("option[value='"+ret.groupId+"']").prop("selected",true);
                 form.render('select');
-
             }
         });
-
-
     });
 
 
@@ -125,7 +119,8 @@
         var cardNo = $("#cardNo").val();
         var telphone = $("#telphone").val();
         var groupId = $("#groupId").val();
-        console.log(cardNo);
+        console.log("用户id是"+ userId);
+
         var formData = new FormData();
         formData.append("userId",userId);
         formData.append("username",username);
@@ -150,7 +145,7 @@
                 }
             }
 
-        })
+        });
     }
 
     function reloadWindow() {
