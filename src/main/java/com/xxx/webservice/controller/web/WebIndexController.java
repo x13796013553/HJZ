@@ -174,7 +174,7 @@ public class WebIndexController {
         model.addAttribute("title", articleClassService.getArticleClass(parentId).getClassName());
         model.addAttribute("classId", classId);
         model.addAttribute("classList", classList);
-        if (xArticleList.isEmpty() != true) {
+        if (!xArticleList.isEmpty()) {
             model.addAttribute("content", xArticleList.get(0));
         }
 
