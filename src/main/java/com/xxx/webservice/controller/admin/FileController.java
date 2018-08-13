@@ -20,7 +20,6 @@ public class FileController {
     @RequestMapping("/file")
     public String showFilePage() {
         return "admin/addFile";
-
     }
 
     @RequestMapping("/upload")
