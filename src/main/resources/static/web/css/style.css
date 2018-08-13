@@ -241,7 +241,7 @@ p {
 .main .down .left .list ul li a {
     font-size: 14px;
     text-decoration: none;
-    color: #002a89;
+    color: #3B3B3B;
 }
 
 .main .down .right {
@@ -315,7 +315,7 @@ p {
 .main .down .right .list ul li a {
     font-size: 14px;
     text-decoration: none;
-    color: #828181;
+    color: #3B3B3B;
 }
 
 /********************************************* 三级页面：开始 ***************************************/
@@ -370,7 +370,6 @@ p {
     /*border-radius: 10px;*/
     background: #EDEDED;
 }
-
 
 /********************************************* 三级页面：结束 ***************************************/
 
@@ -518,7 +517,6 @@ p {
     margin-top: 14px;
 }
 
-
 .class2-list .left {
     width: 9%;
     height: 100%;
@@ -531,12 +529,11 @@ p {
     margin-top: 0;
     width: 100%;
 }
-.class2-list .left ul li{
+
+.class2-list .left ul li {
     list-style-image: url("/static/web/img/rArrow.png");
     width: 100%;
 }
-
-
 
 .left-list-div {
     width: 95%;
@@ -545,7 +542,6 @@ p {
     float: right;
     text-align: center;
 }
-
 
 .left-list-div a {
     color: #FFFFFF;
@@ -564,8 +560,6 @@ p {
     text-align: center;
 }
 
-
-
 .left-list-div-active a {
     color: #002a89;
     text-decoration: none;
@@ -579,17 +573,20 @@ p {
     float: right;
     margin-right: 5%;
 }
-.class2-list .right ul{
+
+.class2-list .right ul {
     margin-top: 0px;
 }
-.class2-list .right ul li a{
+
+.class2-list .right ul li a {
     text-decoration: none;
     color: black;
     font-family: "Microsoft YaHei", sans-serif;
     font-weight: bold;
     font-size: 14px;
 }
-.class2-list .right ul li p{
+
+.class2-list .right ul li p {
     font-size: 14px;
 }
 
@@ -649,7 +646,6 @@ p {
 
 /********************************************* 二级页面：结束 ***************************************/
 
-
 /*三级页面第二版*/
 .detail-content2-div {
     width: 100%;
@@ -692,7 +688,8 @@ p {
     margin-left: 11%;
     /*overflow-y: scroll;*/
 }
-.detail-content3 textarea{
+
+.detail-content3 textarea {
     width: 100%;
     height: 85%;
     background: none;

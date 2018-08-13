@@ -62,7 +62,7 @@ public class WebIndexController {
                 articleList = articleService.getAllArticle();
                 redisUtils.set("articleClassList", articleClassList, 5l, TimeUnit.MINUTES);
                 redisUtils.set("articleList", articleList, 5l, TimeUnit.MINUTES);
-                System.out.println("正在存储数据到缓存中。。。。。。");
+                System.out.println("正在存储数据到缓存中。。。。。。,保存时间为5分钟");
             }
 
             // 常用资源

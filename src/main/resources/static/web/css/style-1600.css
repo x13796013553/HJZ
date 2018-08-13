@@ -4,9 +4,11 @@ body {
     margin: 0;
     height: 740px;
 }
-p{
+
+p {
     margin: 0;
 }
+
 .fl {
     float: left;
 }
@@ -36,7 +38,8 @@ p{
     margin-top: -4px;
     height: 60px;
 }
-.bottom p{
+
+.bottom p {
     text-align: center;
     color: #FFFFFF;
     font-size: 14px;
@@ -132,17 +135,18 @@ p{
     font-weight: bold;
 }
 
-.vo-div{
+.vo-div {
     width: 100%;
     height: 10%;
-    border-radius:3px;
-    border:1px solid #bacfd5;
-    background-color:rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    border: 1px solid #bacfd5;
+    background-color: rgba(255, 255, 255, 0.5);
     text-align: center;
     margin-top: 10px;
     line-height: 18px;
 }
-.vo-div p{
+
+.vo-div p {
     text-align: center;
     color: #002a89;
     font-size: 14px;
@@ -150,7 +154,8 @@ p{
     font-family: "Microsoft YaHei", sans-serif;
     line-height: 21px;
 }
-.vo-div a{
+
+.vo-div a {
     text-align: center;
     color: #002a89;
     font-size: 14px;
@@ -166,31 +171,34 @@ p{
     padding-left: 7%;
     padding-right: 7%;
 }
-.main .down .left{
+
+.main .down .left {
     float: left;
     width: 37%;
     height: 100%;
 }
-.main .down .left .title{
+
+.main .down .left .title {
     width: 100%;
     height: 15%;
-    border-radius:3px;
-    border:1px solid #bacfd5;
-    background-color:rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    border: 1px solid #bacfd5;
+    background-color: rgba(255, 255, 255, 0.5);
 }
-.main .down .left .title .tzgg{
+
+.main .down .left .title .tzgg {
     width: 20%;
     height: 100%;
     float: left;
     margin-left: 1%;
 }
 
-.main .down .left .title .tzgg img{
+.main .down .left .title .tzgg img {
     margin-top: 2px;
     float: left;
 }
 
-.main .down .left .title .tzgg p{
+.main .down .left .title .tzgg p {
     float: left;
     margin-left: 4%;
     font-size: 16px;
@@ -198,66 +206,74 @@ p{
     font-weight: bold;
     margin-top: 0px;
 }
-.main .down .left .title .more{
+
+.main .down .left .title .more {
     float: right;
     width: 20%;
     height: 100%;
     margin-right: 2%;
 }
-.main .down .left .title .more p{
+
+.main .down .left .title .more p {
     font-size: 14px;
     float: right;
     margin-top: 3px;
     margin-right: 6%;
 }
-.main .down .left .title .more img{
+
+.main .down .left .title .more img {
     float: right;
     margin-top: 9px;
 }
-.main .down .left .list{
+
+.main .down .left .list {
     width: 100%;
     height: 70%;
     margin-top: 20px;
 }
-.main .down .left .list ul{
+
+.main .down .left .list ul {
     padding-left: 4%;
 }
-.main .down .left .list ul li{
+
+.main .down .left .list ul li {
     list-style: none;
 }
-.main .down .left .list ul li a{
+
+.main .down .left .list ul li a {
     font-size: 14px;
     text-decoration: none;
-    color: #002a89;
+    color: #3B3B3B;
 }
 
-
-.main .down .right{
+.main .down .right {
     float: right;
     width: 37%;
     height: 100%;
     margin-right: 22%;
 }
 
-.main .down .right .title{
+.main .down .right .title {
     width: 100%;
     height: 15%;
-    border-radius:3px;
-    border:1px solid #bacfd5;
-    background-color:rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    border: 1px solid #bacfd5;
+    background-color: rgba(255, 255, 255, 0.5);
 }
-.main .down .right .title .tzgg{
+
+.main .down .right .title .tzgg {
     width: 20%;
     height: 100%;
     float: left;
     margin-left: 1%;
 }
-.main .down .right .title .tzgg img{
+
+.main .down .right .title .tzgg img {
     margin-top: 2px;
     float: left;
 }
 
-.main .down .right .title .tzgg p{
+.main .down .right .title .tzgg p {
     float: left;
     margin-left: 4%;
     font-size: 16px;
@@ -265,52 +281,61 @@ p{
     font-weight: bold;
     margin-top: 0px;
 }
-.main .down .right .title .more{
+
+.main .down .right .title .more {
     float: right;
     width: 20%;
     height: 100%;
     margin-right: 2%;
 }
-.main .down .right .title .more p{
+
+.main .down .right .title .more p {
     font-size: 14px;
     float: right;
     margin-top: 3px;
     margin-right: 6%;
 }
-.main .down .right .title .more img{
+
+.main .down .right .title .more img {
     float: right;
     margin-top: 9px;
 }
-.main .down .right .list{
+
+.main .down .right .list {
     width: 100%;
     height: 70%;
     margin-top: 20px;
 }
-.main .down .right .list ul{
+
+.main .down .right .list ul {
     padding-left: 4%;
 }
-.main .down .right .list ul li{
-   list-style: none;
+
+.main .down .right .list ul li {
+    list-style: none;
 }
-.main .down .right .list ul li a{
+
+.main .down .right .list ul li a {
     font-size: 14px;
     text-decoration: none;
-    color: #828181;
+    color: #3B3B3B;
 }
 
 /********************************************* 三级页面：开始 ***************************************/
-.detail-title-div{
+.detail-title-div {
     width: 100%;
     height: 12%;
 }
-.detail-title-div .title{
+
+.detail-title-div .title {
     width: 10%;
     float: left;
     height: 100%;
     background: url("/static/web/img/detail-title.png") center top no-repeat;
     margin-left: 6%;
 }
-.detail-title-div .title p{
+
+.detail-title-div .title p {
     width: 100%;
     text-align: center;
     color: #FFFFFF;
@@ -319,27 +344,32 @@ p{
     line-height: 26px;
     letter-spacing: 2px;
 }
-.detail-content-div{
+
+.detail-content-div {
     width: 100%;
     height: 93%;
 }
-.detail-content{
+
+.detail-content {
     width: 78%;
     height: 85%;
     margin-left: 11%;
     overflow-y: scroll;
 }
-.detail-content::-webkit-scrollbar {/*滚动条整体样式*/
-    width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+
+.detail-content::-webkit-scrollbar { /*滚动条整体样式*/
+    width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
     height: 1px;
 }
-.detail-content::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+
+.detail-content::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
     border-radius: 10px;
     background-color: #F90;
     background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
 }
+
 .detail-content::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
     /*border-radius: 10px;*/
     background: #EDEDED;
 }
@@ -347,18 +377,20 @@ p{
 /********************************************* 三级页面：结束 ***************************************/
 
 /********************************************* 二级页面：开始 ***************************************/
-.class-div{
+.class-div {
     width: 100%;
     height: 12%;
 }
-.class-div .title{
+
+.class-div .title {
     width: 10%;
     float: left;
     height: 100%;
     background: url("/static/web/img/detail-title.png") center top no-repeat;
     margin-left: 6%;
 }
-.class-div .title p{
+
+.class-div .title p {
     width: 100%;
     text-align: center;
     color: #FFFFFF;
@@ -367,25 +399,30 @@ p{
     line-height: 26px;
     letter-spacing: 2px;
 }
-.class-list-div{
+
+.class-list-div {
     width: 100%;
     height: 93%;
 }
-.class-list{
+
+.class-list {
     width: 78%;
     height: 85%;
     margin-left: 8%;
 }
-.class-list ul li{
+
+.class-list ul li {
     list-style: none;
     line-height: 35px;
 }
-.class-list ul li a{
+
+.class-list ul li a {
     font-family: "Microsoft YaHei", sans-serif;
     text-decoration: none;
     color: black;
     margin-left: 1%;
 }
+
 /*分页*/
 .tcdPageCode {
     padding: 70px 39%;
@@ -393,6 +430,7 @@ p{
     color: #ccc;
     text-align: center;
 }
+
 .tcdPageCode a {
     display: inline-block;
     color: #428bca;
@@ -405,10 +443,12 @@ p{
     border-radius: 4px;
     vertical-align: middle;
 }
+
 .tcdPageCode a:hover {
     text-decoration: none;
     border: 1px solid #428bca;
 }
+
 .tcdPageCode span.current {
     font-size: 12px;
     display: inline-block;
@@ -422,6 +462,7 @@ p{
     border-radius: 4px;
     vertical-align: middle;
 }
+
 .tcdPageCode span.disabled {
     font-size: 12px;
     display: inline-block;
@@ -435,6 +476,7 @@ p{
     border-radius: 4px;
     vertical-align: middle;
 }
+
 /********************************************* 二级页面：结束 ***************************************/
 
 /********************************************* 二级页面第二版：开始 ***************************************/
@@ -478,7 +520,6 @@ p{
     margin-top: 6px;
 }
 
-
 .class2-list .left {
     width: 9%;
     height: 100%;
@@ -491,12 +532,11 @@ p{
     margin-top: 0;
     width: 100%;
 }
-.class2-list .left ul li{
+
+.class2-list .left ul li {
     list-style-image: url("/static/web/img/rArrow.png");
     width: 100%;
 }
-
-
 
 .left-list-div {
     width: 95%;
@@ -505,7 +545,6 @@ p{
     float: right;
     text-align: center;
 }
-
 
 .left-list-div a {
     color: #FFFFFF;
@@ -524,8 +563,6 @@ p{
     text-align: center;
 }
 
-
-
 .left-list-div-active a {
     color: #002a89;
     text-decoration: none;
@@ -539,17 +576,20 @@ p{
     float: right;
     margin-right: 5%;
 }
-.class2-list .right ul{
+
+.class2-list .right ul {
     margin-top: 0px;
 }
-.class2-list .right ul li a{
+
+.class2-list .right ul li a {
     text-decoration: none;
     color: black;
     font-family: "Microsoft YaHei", sans-serif;
     font-weight: bold;
     font-size: 12px;
 }
-.class2-list .right ul li p{
+
+.class2-list .right ul li p {
     font-size: 12px;
 }
 
@@ -609,7 +649,6 @@ p{
 
 /********************************************* 二级页面：结束 ***************************************/
 
-
 /*三级页面第二版*/
 .detail-content2-div {
     width: 100%;
@@ -652,7 +691,8 @@ p{
     margin-left: 11%;
     /*overflow-y: scroll;*/
 }
-.detail-content3 textarea{
+
+.detail-content3 textarea {
     width: 100%;
     height: 85%;
     background: none;
