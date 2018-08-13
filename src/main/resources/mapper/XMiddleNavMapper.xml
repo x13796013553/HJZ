@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxx.webservice.dao.XMiddleNavMapper" >
+  <resultMap id="BaseResultMap" type="com.xxx.webservice.pojo.XMiddleNav" >
+    <id column="nav_id" property="navId" jdbcType="INTEGER" />
+    <result column="nav_name" property="navName" jdbcType="VARCHAR" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="nav_url" property="navUrl" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="img_local_url" property="imgLocalUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    nav_id, nav_name, img_url, nav_url, sort, img_local_url
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xxx.webservice.pojo.XMiddleNavExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_middle_nav
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_middle_nav
+    where nav_id = #{navId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from x_middle_nav
+    where nav_id = #{navId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xxx.webservice.pojo.XMiddleNavExample" >
+    delete from x_middle_nav
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xxx.webservice.pojo.XMiddleNav" >
+    insert into x_middle_nav (nav_id, nav_name, img_url, 
+      nav_url, sort, img_local_url
+      )
+    values (#{navId,jdbcType=INTEGER}, #{navName,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{navUrl,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{imgLocalUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xxx.webservice.pojo.XMiddleNav" >
+    insert into x_middle_nav
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="navId != null" >
+        nav_id,
+      </if>
+      <if test="navName != null" >
+        nav_name,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="navUrl != null" >
+        nav_url,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="imgLocalUrl != null" >
+        img_local_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="navId != null" >
+        #{navId,jdbcType=INTEGER},
+      </if>
+      <if test="navName != null" >
+        #{navName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="navUrl != null" >
+        #{navUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="imgLocalUrl != null" >
+        #{imgLocalUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xxx.webservice.pojo.XMiddleNavExample" resultType="java.lang.Integer" >
+    select count(*) from x_middle_nav
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_middle_nav
+    <set >
+      <if test="record.navId != null" >
+        nav_id = #{record.navId,jdbcType=INTEGER},
+      </if>
+      <if test="record.navName != null" >
+        nav_name = #{record.navName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgUrl != null" >
+        img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.navUrl != null" >
+        nav_url = #{record.navUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.imgLocalUrl != null" >
+        img_local_url = #{record.imgLocalUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_middle_nav
+    set nav_id = #{record.navId,jdbcType=INTEGER},
+      nav_name = #{record.navName,jdbcType=VARCHAR},
+      img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      nav_url = #{record.navUrl,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
+      img_local_url = #{record.imgLocalUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.webservice.pojo.XMiddleNav" >
+    update x_middle_nav
+    <set >
+      <if test="navName != null" >
+        nav_name = #{navName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="navUrl != null" >
+        nav_url = #{navUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="imgLocalUrl != null" >
+        img_local_url = #{imgLocalUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where nav_id = #{navId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.webservice.pojo.XMiddleNav" >
+    update x_middle_nav
+    set nav_name = #{navName,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      nav_url = #{navUrl,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      img_local_url = #{imgLocalUrl,jdbcType=VARCHAR}
+    where nav_id = #{navId,jdbcType=INTEGER}
+  </update>
+</mapper>

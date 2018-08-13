@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>用户登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+
+    <!-- CSS -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Oleo+Script:400,700'>
+    <link rel="stylesheet" href="/static/admin/login/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/admin/login/css/style.css">
+
+</head>
+<body>
+
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="logo span4">
+                <h1>
+                    <a href="">Login<span class="red">.</span></a>
+                </h1>
+            </div>
+            <div class="links span8">
+                <!--<a class="home" href="" rel="tooltip" data-placement="bottom" data-original-title="主页"></a> <a-->
+                    <!--class="blog" href=""-->
+                    <!--rel="tooltip" data-placement="bottom" data-original-title="注册"></a>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="register-container container">
+    <div class="row">
+        <div class="iphone span5">
+            <img src="/static/admin/login/img/iphone.png" alt="">
+        </div>
+        <div class="register span6">
+            <form action="" method="post">
+                <h2>
+                    登录<span class="red"><strong>后台管理</strong></span>
+                </h2>
+                <label for="username">用户名</label>
+                    <input type="text" id="username" name="username" placeholder="请输入用户名...">
+                <label for="password">密码</label>
+                    <input type="password" id="password" name="password" placeholder="请输入密码...">
+
+                <button type="button" onclick="submitLogin()">登 录</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Javascript -->
+<script src="/static/admin/login/js/jquery-1.8.2.min.js"></script>
+<script src="/static/admin/login/js/bootstrap.min.js"></script>
+<script src="/static/admin/login/js/jquery.backstretch.min.js"></script>
+<script src="/static/admin/login/js/scripts.js"></script>
+
+</body>
+</html>
+
+<!--提示框相关加载：开始-->
+<link rel="stylesheet" href="/static/admin/utils/confirm/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/utils/confirm/css/jq22-demo.css">
+<link rel="stylesheet" href="/static/admin/utils/confirm/demo/libs/default.min.css">
+<link rel="stylesheet" href="/static/admin/utils/confirm/demo/demo.min.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/utils/confirm/css/jquery-confirm.css"/>
+
+<!--<script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>-->
+<!--<script>window.jQuery || document.write('<script src="/static/admin/utils/confirm/js/jquery-1.11.0.min.js"><\/script>')</script>-->
+<script src="http://libs.baidu.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="/static/admin/utils/confirm/js/jquery.sticky.min.js"></script>
+<script src="/static/admin/utils/confirm/demo/libs/pretty.js"></script>
+<script type="text/javascript" src="/static/admin/utils/confirm/js/jquery-confirm.js"></script>
+<!--提示框相关加载：结束-->

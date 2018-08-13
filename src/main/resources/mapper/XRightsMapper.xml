@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxx.webservice.dao.XRightsMapper">
+    <resultMap id="BaseResultMap" type="com.xxx.webservice.pojo.XRights">
+        <id column="rights_id" property="rightsId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="menu_id" property="menuId" jdbcType="INTEGER"/>
+        <result column="insert_rights" property="insertRights" jdbcType="INTEGER"/>
+        <result column="delete_rights" property="deleteRights" jdbcType="INTEGER"/>
+        <result column="update_rights" property="updateRights" jdbcType="INTEGER"/>
+        <result column="select_rights" property="selectRights" jdbcType="INTEGER"/>
+        <result column="last_change_datetime" property="lastChangeDatetime" jdbcType="TIMESTAMP"/>
+        <result column="last_operate_userid" property="lastOperateUserid" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        rights_id, user_id, menu_id, insert_rights, delete_rights, update_rights, select_rights,
+        last_change_datetime, last_operate_userid
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xxx.webservice.pojo.XRightsExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from x_rights
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from x_rights
+        where rights_id = #{rightsId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from x_rights
+        where rights_id = #{rightsId,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.xxx.webservice.pojo.XRightsExample">
+        delete from x_rights
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.xxx.webservice.pojo.XRights">
+        insert into x_rights (rights_id, user_id, menu_id,
+        insert_rights, delete_rights, update_rights,
+        select_rights, last_change_datetime, last_operate_userid
+        )
+        values (#{rightsId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{menuId,jdbcType=INTEGER},
+        #{insertRights,jdbcType=INTEGER}, #{deleteRights,jdbcType=INTEGER}, #{updateRights,jdbcType=INTEGER},
+        #{selectRights,jdbcType=INTEGER}, #{lastChangeDatetime,jdbcType=TIMESTAMP},
+        #{lastOperateUserid,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.xxx.webservice.pojo.XRights">
+        insert into x_rights
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="rightsId != null">
+                rights_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="menuId != null">
+                menu_id,
+            </if>
+            <if test="insertRights != null">
+                insert_rights,
+            </if>
+            <if test="deleteRights != null">
+                delete_rights,
+            </if>
+            <if test="updateRights != null">
+                update_rights,
+            </if>
+            <if test="selectRights != null">
+                select_rights,
+            </if>
+            <if test="lastChangeDatetime != null">
+                last_change_datetime,
+            </if>
+            <if test="lastOperateUserid != null">
+                last_operate_userid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="rightsId != null">
+                #{rightsId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="menuId != null">
+                #{menuId,jdbcType=INTEGER},
+            </if>
+            <if test="insertRights != null">
+                #{insertRights,jdbcType=INTEGER},
+            </if>
+            <if test="deleteRights != null">
+                #{deleteRights,jdbcType=INTEGER},
+            </if>
+            <if test="updateRights != null">
+                #{updateRights,jdbcType=INTEGER},
+            </if>
+            <if test="selectRights != null">
+                #{selectRights,jdbcType=INTEGER},
+            </if>
+            <if test="lastChangeDatetime != null">
+                #{lastChangeDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastOperateUserid != null">
+                #{lastOperateUserid,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.xxx.webservice.pojo.XRightsExample" resultType="java.lang.Integer">
+        select count(*) from x_rights
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update x_rights
+        <set>
+            <if test="record.rightsId != null">
+                rights_id = #{record.rightsId,jdbcType=INTEGER},
+            </if>
+            <if test="record.userId != null">
+                user_id = #{record.userId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.menuId != null">
+                menu_id = #{record.menuId,jdbcType=INTEGER},
+            </if>
+            <if test="record.insertRights != null">
+                insert_rights = #{record.insertRights,jdbcType=INTEGER},
+            </if>
+            <if test="record.deleteRights != null">
+                delete_rights = #{record.deleteRights,jdbcType=INTEGER},
+            </if>
+            <if test="record.updateRights != null">
+                update_rights = #{record.updateRights,jdbcType=INTEGER},
+            </if>
+            <if test="record.selectRights != null">
+                select_rights = #{record.selectRights,jdbcType=INTEGER},
+            </if>
+            <if test="record.lastChangeDatetime != null">
+                last_change_datetime = #{record.lastChangeDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.lastOperateUserid != null">
+                last_operate_userid = #{record.lastOperateUserid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update x_rights
+        set rights_id = #{record.rightsId,jdbcType=INTEGER},
+        user_id = #{record.userId,jdbcType=VARCHAR},
+        menu_id = #{record.menuId,jdbcType=INTEGER},
+        insert_rights = #{record.insertRights,jdbcType=INTEGER},
+        delete_rights = #{record.deleteRights,jdbcType=INTEGER},
+        update_rights = #{record.updateRights,jdbcType=INTEGER},
+        select_rights = #{record.selectRights,jdbcType=INTEGER},
+        last_change_datetime = #{record.lastChangeDatetime,jdbcType=TIMESTAMP},
+        last_operate_userid = #{record.lastOperateUserid,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xxx.webservice.pojo.XRights">
+        update x_rights
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="menuId != null">
+                menu_id = #{menuId,jdbcType=INTEGER},
+            </if>
+            <if test="insertRights != null">
+                insert_rights = #{insertRights,jdbcType=INTEGER},
+            </if>
+            <if test="deleteRights != null">
+                delete_rights = #{deleteRights,jdbcType=INTEGER},
+            </if>
+            <if test="updateRights != null">
+                update_rights = #{updateRights,jdbcType=INTEGER},
+            </if>
+            <if test="selectRights != null">
+                select_rights = #{selectRights,jdbcType=INTEGER},
+            </if>
+            <if test="lastChangeDatetime != null">
+                last_change_datetime = #{lastChangeDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastOperateUserid != null">
+                last_operate_userid = #{lastOperateUserid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where rights_id = #{rightsId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xxx.webservice.pojo.XRights">
+        update x_rights
+        set user_id = #{userId,jdbcType=VARCHAR},
+        menu_id = #{menuId,jdbcType=INTEGER},
+        insert_rights = #{insertRights,jdbcType=INTEGER},
+        delete_rights = #{deleteRights,jdbcType=INTEGER},
+        update_rights = #{updateRights,jdbcType=INTEGER},
+        select_rights = #{selectRights,jdbcType=INTEGER},
+        last_change_datetime = #{lastChangeDatetime,jdbcType=TIMESTAMP},
+        last_operate_userid = #{lastOperateUserid,jdbcType=VARCHAR}
+        where rights_id = #{rightsId,jdbcType=INTEGER}
+    </update>
+</mapper>

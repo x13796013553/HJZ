@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>黑龙江建筑职业技术学院-图文信息中心</title>
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" id="theme" href="/static/web/css/selectric.css">
+    <link rel="stylesheet" href="/static/web/css/prism.css">
+</head>
+<body>
+<div class="main-box">
+    <div class="top">
+        <div class="date">
+            <div>
+                <span id="old" style="margin-right: 7%;"></span>
+                <span id="now" style="margin-right: 1%"></span>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="fl-logo">
+                <img src="/static/web/img/logo.png" width="100%">
+            </div>
+            <div class="fr-nav">
+                <ul>
+                    <li style="width: 14%;background: url('/static/web/img/cloud.png') top center no-repeat;">
+                        <a href="/" style="color: #002a89;">
+                            首页
+                        </a>
+                    </li>
+                    <li class="nav-li" style="">
+                        <a href="web/detail?articleId=15">
+                            中心介绍
+                        </a>
+                    </li>
+                    <li class="nav-li" style="">
+                        <a href="web/class?classId=33">
+                            信息资源
+                        </a>
+                    </li>
+                    <li class="nav-li" style="">
+                        <a href="web/class-2?parentId=39">
+                            好书推荐
+                        </a>
+                    </li>
+                    <li class="nav-li" style="">
+                        <a href="web/class-2?parentId=34">
+                            读者服务
+                        </a>
+                    </li>
+                    <li class="nav-li" style="">
+                        <a href="web/message">
+                            在线沟通
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!--主体-->
+    <div class="main">
+        <!--上部-->
+        <div class="up">
+            <!--中心开放时间 -->
+            <div class="up-div">
+                <div class="title">
+                    <p>中心开放时间</p>
+                </div>
+                <div class="vo-div">
+                    <p>期刊阅览室间</p>
+                </div>
+                <div style="width: 100%;height: 10%;">
+                    <p style="text-align: center;font-size: 13px;margin-top: 5px;letter-spacing: 2px;">11:30-20:30</p>
+                </div>
+                <div class="vo-div" style="margin-top: 0px;">
+                    <p>其他部室时间</p>
+                </div>
+                <div style="width: 100%;height: 15%;">
+                    <p style="text-align: center;font-size: 13px;margin-top: 5px;">8:30-11:30/13:30-16:00</p>
+                    <p style="text-align: center;font-size: 14px;margin-top: 5px;color: red;">注：法定节日除外</p>
+                </div>
+
+            </div>
+            <!--常用资源 -->
+            <div class="up-div">
+                <div class="title">
+                    <p>常用资源</p>
+                </div>
+                <div class="vo-div" style="margin-top: 10px;" th:each="article,articleStat:${cyzy}">
+                    <a th:text="${article.getClassName()}"
+                       th:href="@{web/class(classId=${article.getClassId()})}"></a>
+                </div>
+            </div>
+            <!--真人图书馆 -->
+            <div class="up-div">
+                <div class="title">
+                    <p>真人图书馆</p>
+                </div>
+                <div class="vo-div" style="margin-top: 10px;" th:each="article,articleStat:${zrtsg}">
+                    <a th:text="${article.getClassName()}"
+                       th:href="@{/web/class(classId=${article.getClassId()})}"></a>
+                </div>
+            </div>
+            <!--机构导航 -->
+            <div class="up-div">
+                <div class="title">
+                    <p>机构导航</p>
+                </div>
+                <div class="vo-div" style="margin-top: 10px;">
+                    <select id="callbacks">
+                        <option th:each="xn,xnStat:${xnjg}" th:attr="value=${xn.getIfHref()}">
+                            <a th:text="${xn.getTitle()}"></a>
+                        </option>
+                    </select>
+                </div>
+
+                <div class="vo-div" style="margin-top: 10px;">
+                    <select id="callbacks2">
+                        <option th:each="xw,xnStat:${xwjg}" th:attr="value=${xw.getIfHref()}">
+                            <a th:text="${xw.getTitle()}"></a>
+                        </option>
+                    </select>
+                </div>
+
+                <div class="vo-div" style="margin-top: 10px;">
+                    <select id="callbacks3">
+                        <option th:each="xw,xnStat:${yxlj}" th:attr="value=${xw.getIfHref()}">
+                            <a th:text="${xw.getTitle()}"></a>
+                        </option>
+                    </select>
+                </div>
+
+                <div class="vo-div" style="margin-top: 10px;">
+                    <select id="callbacks4">
+                        <option th:each="xw,xnStat:${yqlj}" th:attr="value=${xw.getIfHref()}">
+                            <a th:text="${xw.getTitle()}"></a>
+                        </option>
+                    </select>
+                </div>
+
+            </div>
+
+        </div>
+        <!--下部-->
+        <div class="down">
+            <div class="left">
+                <div class="title">
+                    <div class="tzgg">
+                        <img src="/static/web/img/tzgg-title.png" style="">
+                        <p>通知公告</p>
+                    </div>
+                    <div class="more">
+                        <a target="_blank" href="/web/class?classId=30">
+                            <img src="/static/web/img/rArrow.png">
+                            <p>MORE</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="list">
+                    <ul>
+                        <li th:each="tz,tzStat:${tzgg}">
+                            <th:block th:if="${tzStat.index le 3}">
+                                <img th:src="@{/static/web/img/rArrow.png}">
+                                <a th:if="${tz.getTitle().length() > 20 && tz.getArticleContent() != null && tz.getArticleContent() != ''}"
+                                   th:text="${#strings.substring(tz.getTitle(),0,20)+'...'}"
+                                   th:href="@{/web/detail(articleId=${tz.getArticleId()})}"
+                                   target="_blank">
+                                    暑假期间图书馆开放安排
+                                </a>
+                                <a th:if="${tz.getTitle().length() <= 20 && tz.getArticleContent() != null && tz.getArticleContent() != ''}"
+                                   th:text="${tz.getTitle()}"
+                                   th:href="@{/web/detail(articleId=${tz.getArticleId()})}"
+                                   target="_blank">
+                                    暑假期间图书馆开放安排
+                                </a>
+
+                                <a th:if="${tz.getTitle().length() <= 20 && tz.getIfHref() != null && tz.getIfHref() != ''}"
+                                   th:text="${tz.getTitle()}"
+                                   th:href="@{${tz.getIfHref()}}" target="_blank">
+                                    暑假期间图书馆开放安排
+                                </a>
+                                <a th:if="${tz.getTitle().length() > 20 && tz.getIfHref() != null && tz.getIfHref() != ''}"
+                                   th:text="${tz.getTitle()}"
+                                   th:href="@{${tz.getIfHref()}}" target="_blank">
+                                    暑假期间图书馆开放安排
+                                </a>
+
+                                <a class="fr" th:if="${tz.getArticleContent() != null && tz.getArticleContent() != ''}"
+                                   th:text="${#dates.format(tz.getCreateDatetime(), 'yyyy-MM-dd')}"
+                                   th:href="@{/web/detail(articleId=${tz.getArticleId()})}" target="_blank">
+                                    2018-07-03
+                                </a>
+                                <a class="fr" th:if="${tz.getIfHref() != null && tz.getIfHref() != ''}"
+                                   th:text="${#dates.format(tz.getCreateDatetime(), 'yyyy-MM-dd')}"
+                                   th:href="@{${tz.getIfHref()}}" target="_blank">
+                                    2018-07-03
+                                </a>
+
+
+                            </th:block>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="right">
+                <div class="title">
+                    <div class="tzgg">
+                        <img src="/static/web/img/tzgg-title.png" style="">
+                        <p>资源动态</p>
+                    </div>
+                    <div class="more">
+                        <a target="_blank" href="/web/class?classId=31">
+                            <img src="/static/web/img/rArrow.png">
+                            <p>MORE</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="list">
+                    <ul>
+                        <li th:each="zy,zyStat:${zydt}">
+                            <th:block th:if="${zyStat.index le 3}">
+                                <img th:src="@{/static/web/img/rArrow.png}">
+                                <a th:if="${zy.getTitle().length() > 20 && zy.getArticleContent() != null && zy.getArticleContent() != ''}"
+                                   th:text="${#strings.substring(zy.getTitle(),0,20)+'...'}"
+                                   th:href="@{/web/detail(articleId=${zy.getArticleId()})}"
+                                   target="_blank">
+                                    暑假期间图书馆开放安排
+                                </a>
+                                <a th:if="${zy.getTitle().length() <= 20 && zy.getArticleContent() != null && zy.getArticleContent() != ''}"
+                                   th:text="${zy.getTitle()}"
+                                   th:href="@{/web/detail(articleId=${zy.getArticleId()})}"
+                                   target="_blank">
+                                    暑假期间图书馆开放安排
+                                </a>
+
+                                <a th:if="${zy.getTitle().length() <= 20 && zy.getIfHref() != null && zy.getIfHref() != ''}"
+                                   th:text="${zy.getTitle()}"
+                                   th:href="@{${zy.getIfHref()}}" target="_blank">
+                                    暑假期间图书馆开放安排
+                                </a>
+                                <a th:if="${zy.getTitle().length() > 20 && zy.getIfHref() != null && zy.getIfHref() != ''}"
+                                   th:text="${zy.getTitle()}"
+                                   th:href="@{${zy.getIfHref()}}" target="_blank">
+                                    暑假期间图书馆开放安排
+                                </a>
+
+                                <a class="fr" th:if="${zy.getArticleContent() != null && zy.getArticleContent() != ''}"
+                                   th:text="${#dates.format(zy.getCreateDatetime(), 'yyyy-MM-dd')}"
+                                   th:href="@{/web/detail(articleId=${zy.getArticleId()})}" target="_blank">
+                                    2018-07-03
+                                </a>
+                                <a class="fr" th:if="${zy.getIfHref() != null && zy.getIfHref() != ''}"
+                                   th:text="${#dates.format(zy.getCreateDatetime(), 'yyyy-MM-dd')}"
+                                   th:href="@{${zy.getIfHref()}}" target="_blank">
+                                    2018-07-03
+                                </a>
+                            </th:block>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!--底部-->
+<div class="bottom">
+    <p>
+        黑龙江建筑职业技术学院图文信息中心版权所有 Copyright © 2015 All rights reserved<br/>
+        学院地址：哈尔滨市 ● 哈尔滨新区学院路999号 邮编：150025
+    </p>
+</div>
+</body>
+<script src="/static/web/js/jquery-3.31.js"></script>
+<script src="/static/web/js/index.js"></script>
+<script src="/static/web/js/prism.js"></script>
+<script src="/static/web/js/jquery.minicolors.min.js"></script>
+<script src="/static/web/js/jquery.selectric.js"></script>
+<!--<script src="/static/web/js/demo.js"></script>-->
+</html>

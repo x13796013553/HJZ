@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxx.webservice.dao.XBookMapper">
+	<resultMap id="BaseResultMap" type="com.xxx.webservice.pojo.XBook">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="tel_or_email" property="telOrEmail" jdbcType="VARCHAR" />
+		<result column="ifine" property="ifine" jdbcType="VARCHAR" />
+		<result column="book_title" property="bookTitle" jdbcType="VARCHAR" />
+		<result column="book_detail" property="bookDetail" jdbcType="VARCHAR" />
+		<result column="book_datetime" property="bookDatetime" jdbcType="TIMESTAMP" />
+		<result column="reply_title" property="replyTitle" jdbcType="VARCHAR" />
+		<result column="reply_detail" property="replyDetail" jdbcType="VARCHAR" />
+		<result column="book_datetime" property="bookDatetime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<insert id="addBook" parameterType="com.xxx.webservice.pojo.XBook">
+		insert into x_book
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="telOrEmail != null">
+				tel_or_email,
+			</if>
+			<if test="ifine != null">
+				ifine,
+			</if>
+			<if test="bookTitle != null">
+				book_title,
+			</if>
+			<if test="bookDetail != null">
+				book_detail,
+			</if>
+			<if test="bookDatetime != null">
+				book_datetime,
+			</if>
+			<if test="replyTitle != null">
+				reply_title,
+			</if>
+			<if test="replyDetail != null">
+				reply_detail,
+			</if>
+			<if test="replyDatetime != null">
+				reply_datetime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="telOrEmail != null">
+				#{telOrEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="ifine != null">
+				#{ifine,jdbcType=VARCHAR},
+			</if>
+			<if test="bookTitle != null">
+				#{bookTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="bookDetail != null">
+				#{bookDetail,jdbcType=VARCHAR},
+			</if>
+
+			<if test="bookDatetime != null">
+				#{bookDatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="replyTitle != null">
+				#{replyTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="replyDetail != null">
+				#{replyDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="replyDatetime != null">
+				#{replyDatetime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+</mapper>

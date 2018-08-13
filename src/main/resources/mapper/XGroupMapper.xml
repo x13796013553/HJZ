@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxx.webservice.dao.XGroupMapper" >
+
+    <resultMap id="BaseResultMap" type="com.xxx.webservice.pojo.XGroup" >
+        <id column="group_id" property="groupId" jdbcType="VARCHAR" />
+        <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+        <result column="select_menu" property="selectMenu" jdbcType="VARCHAR" />
+        <result column="add_menu" property="addMenu" jdbcType="VARCHAR" />
+        <result column="delete_menu" property="deleteMenu" jdbcType="VARCHAR" />
+        <result column="update_menu" property="updateMenu" jdbcType="VARCHAR" />
+        <result column="select_article" property="selectArticle" jdbcType="VARCHAR" />
+        <result column="add_article" property="addArticle" jdbcType="VARCHAR" />
+        <result column="delete_article" property="deleteArticle" jdbcType="VARCHAR" />
+        <result column="update_article" property="updateArticle" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        group_id, group_name, select_menu, add_menu, delete_menu, update_menu, select_article, 
+        add_article, delete_article, update_article
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xxx.webservice.pojo.XGroupExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from x_group
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from x_group
+        where group_id = #{groupId,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from x_group
+        where group_id = #{groupId,jdbcType=VARCHAR}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.xxx.webservice.pojo.XGroupExample" >
+        delete from x_group
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.xxx.webservice.pojo.XGroup" >
+        insert into x_group (group_id, group_name, select_menu, 
+            add_menu, delete_menu, update_menu, 
+            select_article, add_article, delete_article, 
+            update_article)
+        values (#{groupId,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}, #{selectMenu,jdbcType=VARCHAR}, 
+            #{addMenu,jdbcType=VARCHAR}, #{deleteMenu,jdbcType=VARCHAR}, #{updateMenu,jdbcType=VARCHAR}, 
+            #{selectArticle,jdbcType=VARCHAR}, #{addArticle,jdbcType=VARCHAR}, #{deleteArticle,jdbcType=VARCHAR}, 
+            #{updateArticle,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.xxx.webservice.pojo.XGroup" >
+        insert into x_group
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="groupId != null" >
+                group_id,
+            </if>
+            <if test="groupName != null" >
+                group_name,
+            </if>
+            <if test="selectMenu != null" >
+                select_menu,
+            </if>
+            <if test="addMenu != null" >
+                add_menu,
+            </if>
+            <if test="deleteMenu != null" >
+                delete_menu,
+            </if>
+            <if test="updateMenu != null" >
+                update_menu,
+            </if>
+            <if test="selectArticle != null" >
+                select_article,
+            </if>
+            <if test="addArticle != null" >
+                add_article,
+            </if>
+            <if test="deleteArticle != null" >
+                delete_article,
+            </if>
+            <if test="updateArticle != null" >
+                update_article,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="groupId != null" >
+                #{groupId,jdbcType=VARCHAR},
+            </if>
+            <if test="groupName != null" >
+                #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="selectMenu != null" >
+                #{selectMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="addMenu != null" >
+                #{addMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteMenu != null" >
+                #{deleteMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="updateMenu != null" >
+                #{updateMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="selectArticle != null" >
+                #{selectArticle,jdbcType=VARCHAR},
+            </if>
+            <if test="addArticle != null" >
+                #{addArticle,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteArticle != null" >
+                #{deleteArticle,jdbcType=VARCHAR},
+            </if>
+            <if test="updateArticle != null" >
+                #{updateArticle,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.xxx.webservice.pojo.XGroupExample" resultType="java.lang.Integer" >
+        select count(*) from x_group
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update x_group
+        <set >
+            <if test="record.groupId != null" >
+                group_id = #{record.groupId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.groupName != null" >
+                group_name = #{record.groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.selectMenu != null" >
+                select_menu = #{record.selectMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="record.addMenu != null" >
+                add_menu = #{record.addMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="record.deleteMenu != null" >
+                delete_menu = #{record.deleteMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateMenu != null" >
+                update_menu = #{record.updateMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="record.selectArticle != null" >
+                select_article = #{record.selectArticle,jdbcType=VARCHAR},
+            </if>
+            <if test="record.addArticle != null" >
+                add_article = #{record.addArticle,jdbcType=VARCHAR},
+            </if>
+            <if test="record.deleteArticle != null" >
+                delete_article = #{record.deleteArticle,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateArticle != null" >
+                update_article = #{record.updateArticle,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update x_group
+        set group_id = #{record.groupId,jdbcType=VARCHAR},
+            group_name = #{record.groupName,jdbcType=VARCHAR},
+            select_menu = #{record.selectMenu,jdbcType=VARCHAR},
+            add_menu = #{record.addMenu,jdbcType=VARCHAR},
+            delete_menu = #{record.deleteMenu,jdbcType=VARCHAR},
+            update_menu = #{record.updateMenu,jdbcType=VARCHAR},
+            select_article = #{record.selectArticle,jdbcType=VARCHAR},
+            add_article = #{record.addArticle,jdbcType=VARCHAR},
+            delete_article = #{record.deleteArticle,jdbcType=VARCHAR},
+            update_article = #{record.updateArticle,jdbcType=TIMESTAMP}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.xxx.webservice.pojo.XGroup" >
+        update x_group
+        <set >
+            <if test="groupName != null" >
+                group_name = #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="selectMenu != null" >
+                select_menu = #{selectMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="addMenu != null" >
+                add_menu = #{addMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteMenu != null" >
+                delete_menu = #{deleteMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="updateMenu != null" >
+                update_menu = #{updateMenu,jdbcType=VARCHAR},
+            </if>
+            <if test="selectArticle != null" >
+                select_article = #{selectArticle,jdbcType=VARCHAR},
+            </if>
+            <if test="addArticle != null" >
+                add_article = #{addArticle,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteArticle != null" >
+                delete_article = #{deleteArticle,jdbcType=VARCHAR},
+            </if>
+            <if test="updateArticle != null" >
+                update_article = #{updateArticle,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where group_id = #{groupId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.xxx.webservice.pojo.XGroup" >
+        update x_group
+        set group_name = #{groupName,jdbcType=VARCHAR},
+            select_menu = #{selectMenu,jdbcType=VARCHAR},
+            add_menu = #{addMenu,jdbcType=VARCHAR},
+            delete_menu = #{deleteMenu,jdbcType=VARCHAR},
+            update_menu = #{updateMenu,jdbcType=VARCHAR},
+            select_article = #{selectArticle,jdbcType=VARCHAR},
+            add_article = #{addArticle,jdbcType=VARCHAR},
+            delete_article = #{deleteArticle,jdbcType=VARCHAR},
+            update_article = #{updateArticle,jdbcType=TIMESTAMP}
+        where group_id = #{groupId,jdbcType=VARCHAR}
+    </update>
+</mapper>

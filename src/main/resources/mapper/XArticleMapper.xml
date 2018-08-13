@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxx.webservice.dao.XArticleMapper">
+    <resultMap id="BaseResultMap" type="com.xxx.webservice.pojo.XArticle">
+        <id column="article_id" property="articleId" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="title_image" property="titleImage" jdbcType="VARCHAR"/>
+        <result column="article_content" property="articleContent" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP"/>
+        <result column="update_datetime" property="updateDatetime" jdbcType="TIMESTAMP"/>
+        <result column="is_pass" property="isPass" jdbcType="VARCHAR"/>
+        <result column="hits" property="hits" jdbcType="INTEGER"/>
+        <result column="local_url" property="localUrl" jdbcType="VARCHAR"/>
+        <result column="class_id" property="classId" jdbcType="INTEGER"/>
+        <result column="if_href" property="ifHref" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                    and
+                                    #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem"
+                                             open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria"
+                     separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                    and
+                                    #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem"
+                                             open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+		article_id, title, author, title_image, article_content,
+		sort, create_datetime,
+		update_datetime,
+		is_pass, hits, local_url,
+		class_id, if_href
+	</sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.xxx.webservice.pojo.XArticleExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from x_article
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from x_article
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		x_article
+		where article_id = #{articleId,jdbcType=INTEGER}
+	</delete>
+    <delete id="deleteByExample" parameterType="com.xxx.webservice.pojo.XArticleExample">
+        delete from x_article
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.xxx.webservice.pojo.XArticle">
+		insert into x_article
+		(article_id, title, author,
+		title_image, article_content, sort,
+		create_datetime, update_datetime, is_pass,
+		hits, local_url, class_id,
+		if_href)
+		values (#{articleId,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{author,jdbcType=VARCHAR},
+		#{titleImage,jdbcType=VARCHAR}, #{articleContent,jdbcType=VARCHAR},
+		#{sort,jdbcType=INTEGER},
+		#{createDatetime,jdbcType=TIMESTAMP},
+		#{updateDatetime,jdbcType=TIMESTAMP}, #{isPass,jdbcType=VARCHAR},
+		#{hits,jdbcType=INTEGER}, #{localUrl,jdbcType=VARCHAR},
+		#{classId,jdbcType=INTEGER},
+		#{ifHref,jdbcType=VARCHAR})
+	</insert>
+    <insert id="insertSelective" parameterType="com.xxx.webservice.pojo.XArticle">
+        insert into x_article
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="articleId != null">
+                article_id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="author != null">
+                author,
+            </if>
+            <if test="titleImage != null">
+                title_image,
+            </if>
+            <if test="articleContent != null">
+                article_content,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="createDatetime != null">
+                create_datetime,
+            </if>
+            <if test="updateDatetime != null">
+                update_datetime,
+            </if>
+            <if test="isPass != null">
+                is_pass,
+            </if>
+            <if test="hits != null">
+                hits,
+            </if>
+            <if test="localUrl != null">
+                local_url,
+            </if>
+            <if test="classId != null">
+                class_id,
+            </if>
+            <if test="ifHref != null">
+                if_href,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="articleId != null">
+                #{articleId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="titleImage != null">
+                #{titleImage,jdbcType=VARCHAR},
+            </if>
+            <if test="articleContent != null">
+                #{articleContent,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="createDatetime != null">
+                #{createDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDatetime != null">
+                #{updateDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isPass != null">
+                #{isPass,jdbcType=VARCHAR},
+            </if>
+            <if test="hits != null">
+                #{hits,jdbcType=INTEGER},
+            </if>
+            <if test="localUrl != null">
+                #{localUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="classId != null">
+                #{classId,jdbcType=INTEGER},
+            </if>
+            <if test="ifHref != null">
+                #{ifHref,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.xxx.webservice.pojo.XArticleExample"
+            resultType="java.lang.Integer">
+        select count(*) from x_article
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+
+    <!-- 模糊查询得到列表 -->
+    <select id="selectByQueryString" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from x_article
+        <where>
+            <if test="startTime != ''">
+                update_datetime &gt;= #{startTime}
+            </if>
+            <if test="endTime != ''">
+                update_datetime &lt;= #{endTime}
+            </if>
+            <if test="keyWords != ''">
+                article_content like '%${keyWords}%' or title like
+                '%${keyWords}%'
+            </if>
+            <if test="classId != ''">
+                class_id = #{classId}
+            </if>
+        </where>
+        order by update_datetime desc limit #{start},#{pageSize}
+    </select>
+
+    <!-- 分页查询文章 -->
+    <select id="selectByPageArticle" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from x_article
+        <where>
+            <if test="classId != ''">
+                class_id = #{classId}
+            </if>
+        </where>
+        order by create_datetime desc limit #{start},#{pageSize}
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map">
+        update x_article
+        <set>
+            <if test="record.articleId != null">
+                article_id = #{record.articleId,jdbcType=INTEGER},
+            </if>
+            <if test="record.title != null">
+                title = #{record.title,jdbcType=VARCHAR},
+            </if>
+            <if test="record.author != null">
+                author = #{record.author,jdbcType=VARCHAR},
+            </if>
+            <if test="record.titleImage != null">
+                title_image = #{record.titleImage,jdbcType=VARCHAR},
+            </if>
+            <if test="record.articleContent != null">
+                article_content =
+                #{record.articleContent,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sort != null">
+                sort = #{record.sort,jdbcType=INTEGER},
+            </if>
+            <if test="record.createDatetime != null">
+                create_datetime =
+                #{record.createDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateDatetime != null">
+                update_datetime =
+                #{record.updateDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.isPass != null">
+                is_pass = #{record.isPass,jdbcType=VARCHAR},
+            </if>
+            <if test="record.hits != null">
+                hits = #{record.hits,jdbcType=INTEGER},
+            </if>
+            <if test="record.localUrl != null">
+                local_url = #{record.localUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.classId != null">
+                class_id = #{record.classId,jdbcType=INTEGER},
+            </if>
+            <if test="record.ifHref != null">
+                if_href = #{record.ifHref,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update x_article
+        set article_id = #{record.articleId,jdbcType=INTEGER},
+        title = #{record.title,jdbcType=VARCHAR},
+        author =
+        #{record.author,jdbcType=VARCHAR},
+        title_image =
+        #{record.titleImage,jdbcType=VARCHAR},
+        article_content =
+        #{record.articleContent,jdbcType=VARCHAR},
+        sort =
+        #{record.sort,jdbcType=INTEGER},
+        create_datetime =
+        #{record.createDatetime,jdbcType=TIMESTAMP},
+        update_datetime =
+        #{record.updateDatetime,jdbcType=TIMESTAMP},
+        is_pass =
+        #{record.isPass,jdbcType=VARCHAR},
+        hits =
+        #{record.hits,jdbcType=INTEGER},
+        local_url =
+        #{record.localUrl,jdbcType=VARCHAR},
+        class_id =
+        #{record.classId,jdbcType=INTEGER},
+        if_href =
+        #{record.ifHref,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xxx.webservice.pojo.XArticle">
+        update x_article
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                author = #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="titleImage != null">
+                title_image = #{titleImage,jdbcType=VARCHAR},
+            </if>
+            <if test="articleContent != null">
+                article_content = #{articleContent,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="createDatetime != null">
+                create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDatetime != null">
+                update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isPass != null">
+                is_pass = #{isPass,jdbcType=VARCHAR},
+            </if>
+            <if test="hits != null">
+                hits = #{hits,jdbcType=INTEGER},
+            </if>
+            <if test="localUrl != null">
+                local_url = #{localUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="classId != null">
+                class_id = #{classId,jdbcType=INTEGER},
+            </if>
+            <if test="ifHref != null">
+                if_href = #{ifHref,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xxx.webservice.pojo.XArticle">
+		update x_article
+		set title = #{title,jdbcType=VARCHAR},
+		author =
+		#{author,jdbcType=VARCHAR},
+		title_image =
+		#{titleImage,jdbcType=VARCHAR},
+		article_content =
+		#{articleContent,jdbcType=VARCHAR},
+		sort = #{sort,jdbcType=INTEGER},
+		create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+		update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+		is_pass =
+		#{isPass,jdbcType=VARCHAR},
+		hits = #{hits,jdbcType=INTEGER},
+		local_url =
+		#{localUrl,jdbcType=VARCHAR},
+		class_id = #{classId,jdbcType=INTEGER},
+		if_href = #{ifHref,jdbcType=VARCHAR}
+		where article_id =
+		#{articleId,jdbcType=INTEGER}
+	</update>
+
+    <select id="selectArticleByPageAndClassId" parameterType="map" resultMap="BaseResultMap">
+        select *
+        from x_article
+        where class_id = #{classId}
+        order by create_datetime desc limit #{before},#{after}
+    </select>
+    
+    <select id="selectAllArticleByClassId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select *
+        from x_article
+        where class_id = #{classId}
+        order by create_datetime desc
+    </select>
+</mapper>

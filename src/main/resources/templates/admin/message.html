@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>消息管理</title>
+    <link rel="stylesheet" href="/static/admin/frame/layui/css/layui.css">
+    <!--<link rel="stylesheet" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href="/static/admin/frame/static/css/style.css">
+    <link rel="icon" href="/static/admin/frame/static/image/code.png">
+</head>
+<body class="body">
+
+<!-- 工具集 -->
+<div class="my-btn-box">
+    <span class="fl">
+        <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">批量删除</a>
+        <a class="layui-btn btn-add btn-default" id="btn-add" onclick="addUser()">添加</a>
+        <a class="layui-btn btn-add btn-default" id="btn-refresh" onclick="location.reload();"><i class="layui-icon">&#x1002;</i></a>
+    </span>
+    <span class="fr">
+        <!--<span class="layui-form-label">搜索条件：</span>-->
+        <!--<div class="layui-input-inline">-->
+        <!--<input type="text" autocomplete="off" placeholder="请输入搜索条件" class="layui-input">-->
+        <!--</div>-->
+        <!--<button class="layui-btn mgl-20">查询</button>-->
+    </span>
+</div>
+
+<!-- table -->
+<table class="layui-table" lay-filter="table" lay-data="{height: 'full-200', cellMinWidth: 80, page: true, limit:12}">
+    <thead>
+    <tr>
+        <th lay-data="{type:'checkbox'}">ID</th>
+        <th lay-data="{field:'msgId', width:100, sort: true}">ID</th>
+        <th lay-data="{field:'msgContent', width:200}">留言内容</th>
+        <th lay-data="{field:'msgDatetime',sort: true,templet:'<div>{{ toDate(d.msgDatetime)}}</div>'}">留言时间</th>
+        <th lay-data="{field:'isRead' , sort: true}">是否已读</th>
+        <th lay-data="{field:'replyContent' , sort: true}">回复内容</th>
+        <th lay-data="{field:'replyDatetime',sort: true,templet:'<div>{{ toDate(d.replyDatetime)}}</div>'}">回复时间</th>
+        <th lay-data="{width:100, align:'center', toolbar: '#barDemo',width:200, fixed: 'right'}">操作</th>
+    </tr>
+    </thead>
+</table>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">回复</a>
+    <!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script type="text/javascript" src="/static/admin/frame/layui/layui.js"></script>
+<script type="text/javascript" src="/static/admin/js/index.js"></script>
+<script type="text/javascript">
+    // 配置数据表格来源
+    var tableOptions = {
+        url: "/msg/getMsgList", //请求地址
+        method: 'POST', //方式
+        id: 'listReload', //生成 Layui table 的标识 id，必须提供，用于后文刷新操作，笔者该处出过问题
+        page: true, //是否分页
+    };
+    // where: { parentId: 1 } //请求后端接口的条件，该处就是条件错误点，按照官方给出的代码示例，原先写成了 where: { key : { type: "all" } }，结果并不是我想的那样，如此写，key 将是后端的一个类作为参数，里面有 type 属性，如果误以为 key 是 Layui 提供的格式，那就大错特错了
+
+    //
+    layui.use(['table', 'layer'], function () {//layui 模块引用，根据需要自行修改
+        var layer = layui.layer, table = layui.table;
+        var $ = layui.jquery;  // 用于异步加载树定义jquery
+        //表初始化
+        var createTable = function () {
+            table.init('table', tableOptions);
+        };
+
+        //表刷新方法
+        var reloadTable = function (item) {
+            table.reload();
+        };
+
+        //表初始化
+        createTable();
+
+        // 获取选中行
+        table.on('checkbox(table)', function (obj) {
+            console.log(obj.checked); //当前是否选中状态
+            console.log(obj.data); //选中行的相关数据
+            console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+        });
+
+        //监听工具条
+        table.on('tool(table)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.prompt({title: '请输入您的回复信息', formType: 2}, function(text, index){
+                    layer.close(index);
+                    $.ajax({
+                        url:"/msg/addReply",
+                        type:"post",
+                        data:{
+                            msgId:data.msgId,
+                            replyContent:text
+                        },
+                        success:function(res){
+                            if(res.status == "1"){
+                                layer.msg("回复成功！！！");
+                                setTimeout("location.reload()", 2000);
+                            }else{
+                                layer.msg("回复失败！！" + res.msg);
+                                return false;
+                            }
+                        }
+
+                    })
+                    // layer.prompt({title: '请输入您的回复信息', formType:3}, function(text, index){
+                    //     layer.close(index);
+                    //     layer.msg('演示完毕！您的口令：'+ pass +'<br>您最后写下了：'+text);
+                    // });
+                });
+
+            } else if (obj.event === 'del') {
+                layer.confirm('确认删除吗？', function (index) {
+                    $.ajax({
+                        url: "/msg/deleteMsg",
+                        data: {
+                            msgId: data.msgId
+                        },
+                        success: function (ret) {
+                            if (ret.status == "1") {
+                                layer.msg("删除成功");
+                                setTimeout("location.reload()", 2000);
+                            } else {
+                                layer.msg("删除失败！！" + data.msg);
+                                return false;
+                            }
+                        }
+                    })
+                });
+            } else if (obj.event === 'edit') {
+                //弹出即全屏
+                var index = layer.open({
+                    type: 2,
+                    title: "编辑",
+                    content: '/user/editUser?userId=' + data.userId,
+                    area: ['500px', '500px'],
+                    maxmin: true
+                });
+                layer.full(index);
+            }
+        });
+
+        var $ = layui.$, active = {
+            getCheckData: function () { //获取选中数据
+                var checkStatus = table.checkStatus('idTest')
+                    , data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+            , getCheckLength: function () { //获取选中数目
+                var checkStatus = table.checkStatus('idTest')
+                    , data = checkStatus.data;
+                layer.msg('选中了：' + data.length + ' 个');
+            }
+            , isAll: function () { //验证是否全选
+                var checkStatus = table.checkStatus('idTest');
+                layer.msg(checkStatus.isAll ? '全选' : '未全选')
+            }
+        };
+    });
+
+    function addUser() {
+        //弹出即全屏
+        var index = layer.open({
+            type: 2,
+            title: "新增",
+            content: '/user/addUser',
+            area: ['500px', '500px'],
+            maxmin: true
+        });
+        layer.full(index);
+    }
+
+    // 时间格式化
+    function toDate(v) {
+        var date = new Date();
+        date.setTime(v.time);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? '0' + m : m;
+        var s = date.getSeconds();
+        var d = date.getDate();
+        d = d < 10 ? ("0" + d) : d;
+        var h = date.getHours();
+        h = h < 10 ? ("0" + h) : h;
+        var M = date.getMinutes();
+        M = M < 10 ? ("0" + M) : M;
+        var S = date.getSeconds();
+        S = S < 10 ? ("0" + S) : s;
+        var str = y + "-" + m + "-" + d + " " + h + ":" + M + ":" + S;
+        return str;
+    }
+</script>
+<!-- 表格操作按钮集 -->
+<script type="text/html" id="barOption">
+    <a class="layui-btn layui-btn-mini" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">删除</a>
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxx.webservice.dao.XSingleUrlMapper" >
+  <resultMap id="BaseResultMap" type="com.xxx.webservice.pojo.XSingleUrl" >
+    <id column="url_id" property="urlId" jdbcType="VARCHAR" />
+    <result column="url_address" property="urlAddress" jdbcType="VARCHAR" />
+    <result column="local_url" property="localUrl" jdbcType="VARCHAR" />
+    <result column="illustrate" property="illustrate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    url_id, url_address, local_url, illustrate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xxx.webservice.pojo.XSingleUrlExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from x_single_url
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_single_url
+    where url_id = #{urlId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from x_single_url
+    where url_id = #{urlId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xxx.webservice.pojo.XSingleUrlExample" >
+    delete from x_single_url
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xxx.webservice.pojo.XSingleUrl" >
+    insert into x_single_url (url_id, url_address, local_url, 
+      illustrate)
+    values (#{urlId,jdbcType=VARCHAR}, #{urlAddress,jdbcType=VARCHAR}, #{localUrl,jdbcType=VARCHAR}, 
+      #{illustrate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xxx.webservice.pojo.XSingleUrl" >
+    insert into x_single_url
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="urlId != null" >
+        url_id,
+      </if>
+      <if test="urlAddress != null" >
+        url_address,
+      </if>
+      <if test="localUrl != null" >
+        local_url,
+      </if>
+      <if test="illustrate != null" >
+        illustrate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="urlId != null" >
+        #{urlId,jdbcType=VARCHAR},
+      </if>
+      <if test="urlAddress != null" >
+        #{urlAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="localUrl != null" >
+        #{localUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="illustrate != null" >
+        #{illustrate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xxx.webservice.pojo.XSingleUrlExample" resultType="java.lang.Integer" >
+    select count(*) from x_single_url
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update x_single_url
+    <set >
+      <if test="record.urlId != null" >
+        url_id = #{record.urlId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.urlAddress != null" >
+        url_address = #{record.urlAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.localUrl != null" >
+        local_url = #{record.localUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illustrate != null" >
+        illustrate = #{record.illustrate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update x_single_url
+    set url_id = #{record.urlId,jdbcType=VARCHAR},
+      url_address = #{record.urlAddress,jdbcType=VARCHAR},
+      local_url = #{record.localUrl,jdbcType=VARCHAR},
+      illustrate = #{record.illustrate,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.webservice.pojo.XSingleUrl" >
+    update x_single_url
+    <set >
+      <if test="urlAddress != null" >
+        url_address = #{urlAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="localUrl != null" >
+        local_url = #{localUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="illustrate != null" >
+        illustrate = #{illustrate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where url_id = #{urlId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.webservice.pojo.XSingleUrl" >
+    update x_single_url
+    set url_address = #{urlAddress,jdbcType=VARCHAR},
+      local_url = #{localUrl,jdbcType=VARCHAR},
+      illustrate = #{illustrate,jdbcType=VARCHAR}
+    where url_id = #{urlId,jdbcType=VARCHAR}
+  </update>
+</mapper>

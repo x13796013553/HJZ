@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxx.webservice.dao.XUserMapper" >
+
+    <resultMap id="BaseResultMap" type="com.xxx.webservice.pojo.XUser" >
+        <id column="user_id" property="userId" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="last_ip" property="lastIp" jdbcType="VARCHAR" />
+        <result column="last_datetime" property="lastDatetime" jdbcType="TIMESTAMP" />
+        <result column="login_times" property="loginTimes" jdbcType="BIGINT" />
+        <result column="last_address" property="lastAddress" jdbcType="VARCHAR" />
+        <result column="pic_name" property="picName" jdbcType="VARCHAR" />
+        <result column="card_no" property="cardNo" jdbcType="INTEGER" />
+        <result column="telphone" property="telphone" jdbcType="INTEGER" />
+        <result column="head_url" property="headUrl" jdbcType="VARCHAR" />
+        <result column="group_id" property="groupId" jdbcType="VARCHAR" />
+        <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        user_id, username, password, last_ip, last_datetime, login_times, last_address, pic_name, 
+        card_no, telphone, head_url, group_id, group_name
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from x_user
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from x_user
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.xxx.webservice.pojo.XUser" >
+        insert into x_user (user_id, username, password, 
+            last_ip, last_datetime, login_times, 
+            last_address, pic_name, card_no, 
+            telphone, head_url, group_id, 
+            group_name)
+        values (#{userId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+            #{lastIp,jdbcType=VARCHAR}, #{lastDatetime,jdbcType=TIMESTAMP}, #{loginTimes,jdbcType=BIGINT}, 
+            #{lastAddress,jdbcType=VARCHAR}, #{picName,jdbcType=VARCHAR}, #{cardNo,jdbcType=INTEGER}, 
+            #{telphone,jdbcType=INTEGER}, #{headUrl,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, 
+            #{groupName,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.xxx.webservice.pojo.XUser" >
+        insert into x_user
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="username != null" >
+                username,
+            </if>
+            <if test="password != null" >
+                password,
+            </if>
+            <if test="lastIp != null" >
+                last_ip,
+            </if>
+            <if test="lastDatetime != null" >
+                last_datetime,
+            </if>
+            <if test="loginTimes != null" >
+                login_times,
+            </if>
+            <if test="lastAddress != null" >
+                last_address,
+            </if>
+            <if test="picName != null" >
+                pic_name,
+            </if>
+            <if test="cardNo != null" >
+                card_no,
+            </if>
+            <if test="telphone != null" >
+                telphone,
+            </if>
+            <if test="headUrl != null" >
+                head_url,
+            </if>
+            <if test="groupId != null" >
+                group_id,
+            </if>
+            <if test="groupName != null" >
+                group_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null" >
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="lastIp != null" >
+                #{lastIp,jdbcType=VARCHAR},
+            </if>
+            <if test="lastDatetime != null" >
+                #{lastDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="loginTimes != null" >
+                #{loginTimes,jdbcType=BIGINT},
+            </if>
+            <if test="lastAddress != null" >
+                #{lastAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="picName != null" >
+                #{picName,jdbcType=VARCHAR},
+            </if>
+            <if test="cardNo != null" >
+                #{cardNo,jdbcType=INTEGER},
+            </if>
+            <if test="telphone != null" >
+                #{telphone,jdbcType=INTEGER},
+            </if>
+            <if test="headUrl != null" >
+                #{headUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="groupId != null" >
+                #{groupId,jdbcType=VARCHAR},
+            </if>
+            <if test="groupName != null" >
+                #{groupName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.xxx.webservice.pojo.XUser" >
+        update x_user
+        <set >
+            <if test="username != null" >
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="lastIp != null" >
+                last_ip = #{lastIp,jdbcType=VARCHAR},
+            </if>
+            <if test="lastDatetime != null" >
+                last_datetime = #{lastDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="loginTimes != null" >
+                login_times = #{loginTimes,jdbcType=BIGINT},
+            </if>
+            <if test="lastAddress != null" >
+                last_address = #{lastAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="picName != null" >
+                pic_name = #{picName,jdbcType=VARCHAR},
+            </if>
+            <if test="cardNo != null" >
+                card_no = #{cardNo,jdbcType=INTEGER},
+            </if>
+            <if test="telphone != null" >
+                telphone = #{telphone,jdbcType=INTEGER},
+            </if>
+            <if test="headUrl != null" >
+                head_url = #{headUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="groupId != null" >
+                group_id = #{groupId,jdbcType=VARCHAR},
+            </if>
+            <if test="groupName != null" >
+                group_name = #{groupName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.xxx.webservice.pojo.XUser" >
+        update x_user
+        set username = #{username,jdbcType=VARCHAR},
+            password = #{password,jdbcType=VARCHAR},
+            last_ip = #{lastIp,jdbcType=VARCHAR},
+            last_datetime = #{lastDatetime,jdbcType=TIMESTAMP},
+            login_times = #{loginTimes,jdbcType=BIGINT},
+            last_address = #{lastAddress,jdbcType=VARCHAR},
+            pic_name = #{picName,jdbcType=VARCHAR},
+            card_no = #{cardNo,jdbcType=INTEGER},
+            telphone = #{telphone,jdbcType=INTEGER},
+            head_url = #{headUrl,jdbcType=VARCHAR},
+            group_id = #{groupId,jdbcType=VARCHAR},
+            group_name = #{groupName,jdbcType=VARCHAR}
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </update>
+
+    <!-- 根据用户名模糊查询用户列表 -->
+    <select id="selectUserByQueryString" parameterType="map" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from x_user where username like '%${username}%' order by last_datetime desc limit #{start},#{pageSize}
+    </select>
+
+    <!-- 查询所有用户(有分页) -->
+    <select id="selectAllUser" parameterType="map" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from x_user order by last_datetime desc limit #{before},#{after}
+    </select>
+
+    <!-- 查询所有用户 -->
+    <select id="selectAllOfUser" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from x_user order by last_datetime
+    </select>
+
+    <!-- 根据用户名密码查询当前用户是否存在 -->
+    <select id="selectUserByUsernameAndPassWord" parameterType="com.xxx.webservice.pojo.XUser" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from x_user
+        where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>新增</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/static/admin/frame/layui/css/layui.css" media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>新增</legend>
+</fieldset>
+<input type="hidden" id="editOrAdd"  >
+
+<form class="layui-form" action="">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色名</label>
+        <div class="layui-input-block">
+            <input type="text" name="groupName" id="groupName" autocomplete="off" placeholder="请输入角色名"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">查询菜单</label>
+        <div class="layui-input-block" id="selectMenu">
+            <input type="checkbox" name="select" th:value="${sl.getMenuId()}" th:each="sl,slStat:${menu}" th:title="${sl.getMenuName()}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">新增菜单</label>
+        <div class="layui-input-block" id="addMenu">
+            <input type="checkbox" name="add" th:value="${sl.getMenuId()}" th:each="sl,slStat:${menu}" th:title="${sl.getMenuName()}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">删除菜单</label>
+        <div class="layui-input-block" id="deleteMenu">
+            <input type="checkbox" name="delete" th:value="${sl.getMenuId()}" th:each="sl,slStat:${menu}" th:title="${sl.getMenuName()}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">修改菜单</label>
+        <div class="layui-input-block" id="updateMenu">
+            <input type="checkbox" name="update" th:value="${sl.getMenuId()}" th:each="sl,slStat:${menu}" th:title="${sl.getMenuName()}">
+        </div>
+    </div>
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>文章权限</legend>
+    </fieldset>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">文章权限</label>
+        <div class="layui-input-block" id="selectArticle">
+            <input type="checkbox" name="selectArticle" th:value="${ac.getClassId()}" th:each="ac,acStat:${articleClass}" th:title="${ac.getClassName()}">
+        </div>
+    </div>
+    <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label">新增文章</label>-->
+        <!--<div class="layui-input-block" id="addArticle">-->
+            <!--<input type="checkbox" name="addArticle" th:value="${ac.getClassId()}" th:each="ac,acStat:${articleClass}" th:title="${ac.getClassName()}">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label">删除文章</label>-->
+        <!--<div class="layui-input-block" id="deleteArticle">-->
+            <!--<input type="checkbox" name="deleteArticle" th:value="${ac.getClassId()}" th:each="ac,acStat:${articleClass}" th:title="${ac.getClassName()}">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label">修改文章</label>-->
+        <!--<div class="layui-input-block" id="updateArticle">-->
+            <!--<input type="checkbox" name="updateArticle" th:value="${ac.getClassId()}" th:each="ac,acStat:${articleClass}" th:title="${ac.getClassName()}">-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <a class="layui-btn" onclick="subMitAdd()">立即提交</a>
+            <a type="reset" class="layui-btn layui-btn-primary">重置</a>
+        </div>
+    </div>
+</form>
+
+
+<script src="/static/admin/frame/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        var $ = layui.jquery;
+
+
+    });
+    // 提交表单
+    function subMitAdd() {
+        var $ = layui.jquery;
+
+        // 获取所有数据
+        var groupName = $("#groupName").val();
+
+        // 选择权限
+        var selectMenu = "";
+        $("input[name='select']:checked").each(function(j) {
+            if (j >= 0) {
+                selectMenu += $(this).val() + ","
+            }
+        });
+        selectMenu = selectMenu.substring(0,selectMenu.length-1);
+
+        // 新增权限
+        var addMenu = "";
+        $("input[name='add']:checked").each(function(j) {
+            if (j >= 0) {
+                addMenu += $(this).val() + ","
+            }
+        });
+        addMenu = addMenu.substring(0,addMenu.length-1);
+
+        // 删除权限
+        var deleteMenu = "";
+        $("input[name='delete']:checked").each(function(j) {
+            if (j >= 0) {
+                deleteMenu += $(this).val() + ","
+            }
+        });
+        deleteMenu = deleteMenu.substring(0,deleteMenu.length-1);
+
+        // 修改权限
+        var updateMenu = "";
+        $("input[name='update']:checked").each(function(j) {
+            if (j >= 0) {
+                updateMenu += $(this).val() + ","
+            }
+        });
+        updateMenu = updateMenu.substring(0,updateMenu.length-1);
+
+        // 文章权限
+        var selectArticle = "";
+        $("input[name='selectArticle']:checked").each(function(j) {
+            if (j >= 0) {
+                selectArticle += $(this).val() + ","
+            }
+        });
+        selectArticle = selectArticle.substring(0,selectArticle.length-1);
+
+
+        var formData = new FormData();
+        formData.append("groupName",groupName);
+        formData.append("selectMenu",selectMenu);
+        formData.append("addMenu",addMenu);
+        formData.append("deleteMenu",deleteMenu);
+        formData.append("updateMenu",updateMenu);
+        formData.append("selectArticle",selectArticle);
+
+        $.ajax({
+            url:"/group/exeAddGroup",
+            data:formData,
+            type:"post",
+            contentType: false, //禁止设置请求类型
+            processData: false, //禁止jquery对DAta数据的处理,默认会处理
+            success:function(data){
+                if(data.status == "1"){
+                    layer.msg("新增成功");
+                    setTimeout("reloadWindow()",2000);
+                }else{
+                    layer.msg("新增失败！！"+data.msg);
+                    return false;
+                }
+            }
+
+        })
+    }
+    function reloadWindow(){
+        layer.close(layer.index);
+        window.parent.location.reload();
+    }
+
+</script>
+
+</body>
+</html>

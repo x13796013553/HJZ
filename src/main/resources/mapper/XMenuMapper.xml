@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxx.webservice.dao.XMenuMapper">
+    <resultMap id="BaseResultMap" type="com.xxx.webservice.pojo.XMenu">
+        <id column="menu_id" property="menuId" jdbcType="INTEGER"/>
+        <result column="menu_name" property="menuName" jdbcType="VARCHAR"/>
+        <result column="menu_url" property="menuUrl" jdbcType="VARCHAR"/>
+        <result column="icon_url" property="iconUrl" jdbcType="VARCHAR"/>
+        <result column="is_parent" property="isParent" jdbcType="BIT"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="last_change_datetime" property="lastChangeDatetime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        menu_id, menu_name, menu_url, icon_url, is_parent, parent_id, last_change_datetime
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xxx.webservice.pojo.XMenuExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from x_menu
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from x_menu
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from x_menu
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.xxx.webservice.pojo.XMenuExample">
+        delete from x_menu
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.xxx.webservice.pojo.XMenu">
+        insert into x_menu (menu_id, menu_name, menu_url,
+        icon_url, is_parent, parent_id,
+        last_change_datetime)
+        values (#{menuId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR},
+        #{iconUrl,jdbcType=VARCHAR}, #{isParent,jdbcType=BIT}, #{parentId,jdbcType=INTEGER},
+        #{lastChangeDatetime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.xxx.webservice.pojo.XMenu">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="menuId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into x_menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="menuId != null">
+                menu_id,
+            </if>
+            <if test="menuName != null">
+                menu_name,
+            </if>
+            <if test="menuUrl != null">
+                menu_url,
+            </if>
+            <if test="iconUrl != null">
+                icon_url,
+            </if>
+            <if test="isParent != null">
+                is_parent,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="lastChangeDatetime != null">
+                last_change_datetime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="menuId != null">
+                #{menuId,jdbcType=INTEGER},
+            </if>
+            <if test="menuName != null">
+                #{menuName,jdbcType=VARCHAR},
+            </if>
+            <if test="menuUrl != null">
+                #{menuUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="iconUrl != null">
+                #{iconUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="isParent != null">
+                #{isParent,jdbcType=BIT},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="lastChangeDatetime != null">
+                #{lastChangeDatetime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertReturnMenuId" parameterType="com.xxx.webservice.pojo.XMenu">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="menuId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into x_menu (menu_id, menu_name, menu_url,
+        icon_url, is_parent, parent_id,
+        last_change_datetime)
+        values (#{menuId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR},
+        #{iconUrl,jdbcType=VARCHAR}, #{isParent,jdbcType=BIT}, #{parentId,jdbcType=INTEGER},
+        #{lastChangeDatetime,jdbcType=TIMESTAMP})
+    </insert>
+    <select id="countByExample" parameterType="com.xxx.webservice.pojo.XMenuExample" resultType="java.lang.Integer">
+        select count(*) from x_menu
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+
+    <!-- 根据用户名模糊查询用户列表 -->
+    <select id="selectMenusByQueryString" parameterType="map" resultMap="BaseResultMap">
+        select * from x_menu where menu_name like '%${menuname}%' order by last_change_datetime desc limit
+        #{start},#{pageSize}
+    </select>
+
+    <!-- 查询所有用户 -->
+    <select id="selectAllMenu" parameterType="map" resultMap="BaseResultMap">
+        select *
+        from x_menu
+        where parent_id = #{parentId}
+        order by last_change_datetime desc limit #{before},#{after}
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map">
+        update x_menu
+        <set>
+            <if test="record.menuId != null">
+                menu_id = #{record.menuId,jdbcType=INTEGER},
+            </if>
+            <if test="record.menuName != null">
+                menu_name = #{record.menuName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.menuUrl != null">
+                menu_url = #{record.menuUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.iconUrl != null">
+                icon_url = #{record.iconUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isParent != null">
+                is_parent = #{record.isParent,jdbcType=BIT},
+            </if>
+            <if test="record.parentId != null">
+                parent_id = #{record.parentId,jdbcType=INTEGER},
+            </if>
+            <if test="record.lastChangeDatetime != null">
+                last_change_datetime = #{record.lastChangeDatetime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update x_menu
+        set menu_id = #{record.menuId,jdbcType=INTEGER},
+        menu_name = #{record.menuName,jdbcType=VARCHAR},
+        menu_url = #{record.menuUrl,jdbcType=VARCHAR},
+        icon_url = #{record.iconUrl,jdbcType=VARCHAR},
+        is_parent = #{record.isParent,jdbcType=BIT},
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+        last_change_datetime = #{record.lastChangeDatetime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xxx.webservice.pojo.XMenu">
+        update x_menu
+        <set>
+            <if test="menuName != null">
+                menu_name = #{menuName,jdbcType=VARCHAR},
+            </if>
+            <if test="menuUrl != null">
+                menu_url = #{menuUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="iconUrl != null">
+                icon_url = #{iconUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="isParent != null">
+                is_parent = #{isParent,jdbcType=BIT},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="lastChangeDatetime != null">
+                last_change_datetime = #{lastChangeDatetime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xxx.webservice.pojo.XMenu">
+        update x_menu
+        set menu_name = #{menuName,jdbcType=VARCHAR},
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+        icon_url = #{iconUrl,jdbcType=VARCHAR},
+        is_parent = #{isParent,jdbcType=BIT},
+        parent_id = #{parentId,jdbcType=INTEGER},
+        last_change_datetime = #{lastChangeDatetime,jdbcType=TIMESTAMP}
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,0 +1,680 @@
+body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 617px;
+}
+p{
+    margin: 0;
+}
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.main-box {
+    display: inline-block;
+    width: 100%; /*图片自适应的父容器的宽*/
+    height: 93%; /*图片自适应的父容器的高*/
+    background: url(/static/web/img/bg.jpg) no-repeat top center fixed;
+    background-size: 100%;
+    overflow: hidden;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+}
+
+.bottom {
+    width: 100%;
+    background-color: #5c9cc3;
+    /*position: absolute;*/
+    margin-top: -4px;
+    height: 50px;
+}
+.bottom p{
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 14px;
+    padding-top: 7px;
+}
+
+.top {
+    width: 100%;
+    height: 50%;
+}
+
+.top .date {
+    width: 100%;
+    height: 40px;
+    color: #FFFFFF;
+}
+
+.top .date span {
+    /*width:14%;*/
+    height: 20px;
+    color: #FFFFFF;
+    text-align: center;
+    float: right;
+    font-weight: bold;
+    font-family: "Microsoft YaHei", sans-serif;
+    margin-top: 20px;
+}
+
+.top .nav {
+    width: 100%;
+    height: 100px;
+}
+
+.top .nav .fl-logo {
+    float: left;
+    width: 30%;
+    height: 100px;
+    margin-left: 8%;
+}
+
+.top .nav .fr-nav {
+    width: 50%;
+    float: right;
+    height: 100px;
+    margin-right: 2%;
+}
+
+.top .nav .fr-nav ul {
+    width: 100%;
+    height: 64%;
+    margin-top: 20px;
+}
+
+.top .nav .fr-nav ul li {
+    float: left;
+    list-style: none;
+    width: 15%;
+    text-align: center;
+    height: 56px;
+    line-height: 70px;
+}
+
+.top .nav .fr-nav ul li a {
+    font-size: 18px;
+    font-family: "Microsoft YaHei", sans-serif;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.main {
+    width: 100%;
+    height: 50%;
+}
+
+.main .up {
+    width: 100%;
+    height: 60%;
+}
+
+.main .up .up-div {
+    width: 9%;
+    float: left;
+    height: 100%;
+    margin-left: 8%;
+}
+
+.main .up .up-div .title {
+    font-size: 14px;
+    font-family: "Microsoft YaHei", sans-serif;
+    color: #002a89;
+    text-align: center;
+    font-weight: bold;
+}
+
+.vo-div{
+    width: 100%;
+    height: 10%;
+    border-radius:3px;
+    border:1px solid #bacfd5;
+    background-color:rgba(255, 255, 255, 0.5);
+    text-align: center;
+    margin-top: 10px;
+    line-height: 15px;
+}
+.vo-div p{
+    text-align: center;
+    color: #002a89;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: "Microsoft YaHei", sans-serif;
+    line-height: 18px;
+}
+.vo-div a{
+    text-align: center;
+    color: #002a89;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: "Microsoft YaHei", sans-serif;
+    line-height: 0;
+    text-decoration: none;
+}
+
+.main .down {
+    width: 86%;
+    height: 40%;
+    padding-left: 7%;
+    padding-right: 7%;
+}
+.main .down .left{
+    float: left;
+    width: 37%;
+    height: 100%;
+}
+.main .down .left .title{
+    width: 100%;
+    height: 15%;
+    border-radius:3px;
+    border:1px solid #bacfd5;
+    background-color:rgba(255, 255, 255, 0.5);
+}
+.main .down .left .title .tzgg{
+    width: 20%;
+    height: 100%;
+    float: left;
+    margin-left: 1%;
+}
+.main .down .left .title .tzgg img{
+    margin-top: 0;
+    float: left;
+}
+
+.main .down .left .title .tzgg p{
+    float: left;
+    margin-left: 4%;
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+.main .down .left .title .more{
+    float: right;
+    width: 20%;
+    height: 100%;
+    margin-right: 2%;
+}
+.main .down .left .title .more p{
+    font-size: 12px;
+    float: right;
+    margin-top: 1px;
+    margin-right: 6%;
+}
+.main .down .left .title .more img{
+    float: right;
+    margin-top: 6px;
+}
+.main .down .left .list{
+    width: 100%;
+    height: 70%;
+    margin-top: 0;
+}
+.main .down .left .list ul{
+    padding-left: 4%;
+    margin-top: 3px;
+}
+.main .down .left .list ul li{
+    list-style: none;
+}
+.main .down .left .list ul li a{
+    font-size: 12px;
+    text-decoration: none;
+    color: #002a89;
+}
+
+
+.main .down .right{
+    float: right;
+    width: 37%;
+    height: 100%;
+    margin-right: 22%;
+}
+
+.main .down .right .title{
+    width: 100%;
+    height: 15%;
+    border-radius:3px;
+    border:1px solid #bacfd5;
+    background-color:rgba(255, 255, 255, 0.5);
+}
+.main .down .right .title .tzgg{
+    width: 20%;
+    height: 100%;
+    float: left;
+    margin-left: 1%;
+}
+.main .down .right .title .tzgg img{
+    margin-top: 0;
+    float: left;
+}
+
+.main .down .right .title .tzgg p{
+    float: left;
+    margin-left: 4%;
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+.main .down .right .title .more{
+    float: right;
+    width: 20%;
+    height: 100%;
+    margin-right: 2%;
+}
+.main .down .right .title .more p{
+    font-size: 12px;
+    float: right;
+    margin-top: 1px;
+    margin-right: 6%;
+}
+.main .down .right .title .more img{
+    float: right;
+    margin-top: 6px;
+}
+.main .down .right .list{
+    width: 100%;
+    height: 70%;
+    margin-top: 0;
+}
+.main .down .right .list ul{
+    padding-left: 4%;
+    margin-top: 3px;
+}
+.main .down .right .list ul li{
+   list-style: none;
+}
+.main .down .right .list ul li a{
+    font-size: 12px;
+    text-decoration: none;
+    color: #828181;
+}
+
+
+
+/********************************************* 三级页面：开始 ***************************************/
+.detail-title-div{
+    width: 100%;
+    height: 12%;
+}
+.detail-title-div .title{
+    width: 10%;
+    float: left;
+    height: 100%;
+    background: url("/static/web/img/detail-title.png") center top no-repeat;
+    margin-left: 6%;
+}
+.detail-title-div .title p{
+    width: 100%;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 2px;
+}
+.detail-content-div{
+    width: 100%;
+    height: 93%;
+}
+.detail-content{
+    width: 78%;
+    height: 85%;
+    margin-left: 11%;
+    overflow-y: scroll;
+}
+.detail-content::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+.detail-content::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 10px;
+    background-color: #F90;
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+}
+.detail-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    /*border-radius: 10px;*/
+    background: #EDEDED;
+}
+
+/********************************************* 三级页面：结束 ***************************************/
+
+/********************************************* 二级页面：开始 ***************************************/
+.class-div{
+    width: 100%;
+    height: 12%;
+}
+.class-div .title{
+    width: 10%;
+    float: left;
+    height: 100%;
+    background: url("/static/web/img/detail-title.png") center top no-repeat;
+    margin-left: 6%;
+}
+.class-div .title p{
+    width: 100%;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 2px;
+}
+.class-list-div{
+    width: 100%;
+    height: 93%;
+}
+.class-list{
+    width: 78%;
+    height: 85%;
+    margin-left: 8%;
+}
+.class-list ul li{
+    list-style: none;
+    line-height: 35px;
+}
+.class-list ul li a{
+    font-family: "Microsoft YaHei", sans-serif;
+    text-decoration: none;
+    color: black;
+    margin-left: 1%;
+}
+/*分页*/
+.tcdPageCode {
+    padding: 5px 39%;
+    text-align: left;
+    color: #ccc;
+    text-align: center;
+}
+.tcdPageCode a {
+    display: inline-block;
+    color: #428bca;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px;
+    border: 1px solid #ddd;
+    margin: 0 2px;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+.tcdPageCode a:hover {
+    text-decoration: none;
+    border: 1px solid #428bca;
+}
+.tcdPageCode span.current {
+    font-size: 12px;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px;
+    margin: 0 2px;
+    color: #fff;
+    background-color: #428bca;
+    border: 1px solid #428bca;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+.tcdPageCode span.disabled {
+    font-size: 12px;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px;
+    margin: 0 2px;
+    color: #bfbfbf;
+    background: #f2f2f2;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+/********************************************* 二级页面：结束 ***************************************/
+
+
+/********************************************* 二级页面第二版：开始 ***************************************/
+.class2-div {
+    width: 100%;
+    height: 12%;
+}
+
+.class2-div .title {
+    width: 10%;
+    float: left;
+    height: 100%;
+    background: url("/static/web/img/detail-title.png") center top no-repeat;
+    margin-left: 6.7%;
+}
+
+.class2-div .title p {
+    width: 100%;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 2px;
+}
+
+.class2-list-div {
+    width: 100%;
+    height: 93%;
+}
+
+.class2-list {
+    width: 78%;
+    height: 85%;
+    margin-left: 8%;
+}
+
+.class2-list ul li {
+    list-style: none;
+    line-height: 20px;
+    margin-top: 6px;
+}
+
+
+.class2-list .left {
+    width: 9%;
+    height: 100%;
+    float: left;
+    margin-left: 1%;
+}
+
+.class2-list .left ul {
+    padding-left: 0;
+    margin-top: 0;
+    width: 100%;
+}
+.class2-list .left ul li{
+    list-style-image: url("/static/web/img/rArrow.png");
+    width: 100%;
+}
+
+
+
+.left-list-div {
+    width: 95%;
+    height: 100%;
+    background-color: #002a89;
+    float: right;
+    text-align: center;
+}
+
+
+.left-list-div a {
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: "Microsoft YaHei", sans-serif;
+}
+
+.left-list-div-active {
+    width: 95%;
+    height: 100%;
+    border: 1px solid #002a89;
+    background-color: #FFFFFF;
+    float: right;
+    text-align: center;
+}
+
+
+
+.left-list-div-active a {
+    color: #002a89;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: "Microsoft YaHei", sans-serif;
+}
+
+.class2-list .right {
+    width: 80%;
+    height: 90%;
+    float: right;
+    margin-right: 5%;
+}
+.class2-list .right ul{
+    margin-top: 0px;
+    height: 100%;
+    overflow-y: scroll;
+}
+.class2-list .right ul li a{
+    text-decoration: none;
+    color: black;
+    font-family: "Microsoft YaHei", sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+.class2-list .right ul li p{
+    font-size: 12px;
+}
+.class2-list .right ul::-webkit-scrollbar { /*滚动条整体样式*/
+    width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+.class2-list .right ul::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+    border-radius: 10px;
+    background-color: #F90;
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+}
+
+.class2-list .right ul::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    /*border-radius: 10px;*/
+    background: #EDEDED;
+}
+
+/*分页*/
+.tcdPageCode2 {
+    padding: 0px 39%;
+    text-align: left;
+    color: #ccc;
+    text-align: center;
+}
+
+.tcdPageCode2 a {
+    display: inline-block;
+    color: #428bca;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px;
+    border: 1px solid #ddd;
+    margin: 0 2px;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.tcdPageCode2 a:hover {
+    text-decoration: none;
+    border: 1px solid #428bca;
+}
+
+.tcdPageCode2 span.current {
+    font-size: 12px;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px;
+    margin: 0 2px;
+    color: #fff;
+    background-color: #428bca;
+    border: 1px solid #428bca;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.tcdPageCode2 span.disabled {
+    font-size: 12px;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px;
+    margin: 0 2px;
+    color: #bfbfbf;
+    background: #f2f2f2;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+/********************************************* 二级页面：结束 ***************************************/
+
+
+/*三级页面第二版*/
+.detail-content2-div {
+    width: 100%;
+    height: 93%;
+}
+
+.detail-content2 {
+    width: 100%;
+    height: 85%;
+    /*margin-left: 11%;*/
+    overflow-y: scroll;
+}
+
+.detail-content2::-webkit-scrollbar { /*滚动条整体样式*/
+    width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+.detail-content2::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+    border-radius: 10px;
+    background-color: #F90;
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+}
+
+.detail-content2::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    /*border-radius: 10px;*/
+    background: #EDEDED;
+}
+
+/*在线沟通*/
+.detail-content3-div {
+    width: 100%;
+    height: 93%;
+}
+
+.detail-content3 {
+    width: 78%;
+    height: 85%;
+    margin-left: 11%;
+    /*overflow-y: scroll;*/
+}
+.detail-content3 textarea{
+    width: 100%;
+    height: 85%;
+    background: none;
+    overflow-y: visible;
+}

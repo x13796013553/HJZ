@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>黑龙江建筑职业技术学院-</title>
+</head>
+<body>
+<div class="main-box">
+    <div class="top">
+        <div class="date">
+            <div>
+                <span id="old" style="margin-right: 7%;"></span>
+                <span id="now" style="margin-right: 1%"></span>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="fl-logo">
+                <img src="/static/web/img/logo.png" width="100%">
+            </div>
+            <div class="fr-nav">
+                <ul>
+                    <li class="nav-li">
+                        <a href="/">
+                            首页
+                        </a>
+                    </li>
+                    <li >
+                        <a href="/web/detail?articleId=15">
+                            中心介绍
+                        </a>
+                    </li>
+                    <li style="width: 14%;background: url('/static/web/img/cloud.png') top center no-repeat;">
+                        <a href="#" style="color: #002a89;">
+                            信息资源
+                        </a>
+                    </li>
+                    <li class="nav-li" style="">
+                        <a href="/web/class-2?parentId=39">
+                            好书推荐
+                        </a>
+                    </li>
+                    <li class="nav-li" style="">
+                        <a href="/web/class-2?parentId=34">
+                            读者服务
+                        </a>
+                    </li>
+                    <li class="nav-li" style="">
+                        <a href="/web/message">
+                            在线沟通
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!--主体-->
+    <div class="main">
+        <!--上部-->
+        <div class="class-div">
+            <div class="title">
+                <th:block th:if="${title.length()} > 4">
+                    <p th:text="${title}" style="font-size: 12px">
+                        中心介绍
+                    </p>
+                </th:block>
+                <th:block th:if="${title.length()} <= 4">
+                    <p th:text="${title}">
+                        中心介绍
+                    </p>
+                </th:block>
+            </div>
+        </div>
+        <!--下部-->
+        <div class="class-list-div">
+            <div class="class-list">
+                <ul id="list">
+
+                </ul>
+
+                <div style="float: left" class="tcdPageCode"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--底部-->
+<div class="bottom">
+    <p>
+        黑龙江建筑职业技术学院图文信息中心版权所有 Copyright © 2015 All rights reserved<br/>
+        学院地址：哈尔滨市 ● 哈尔滨新区学院路999号 邮编：150025
+    </p>
+</div>
+</body>
+<script th:inline="javascript">
+    var classId = [[${classId}]];
+</script>
+<script type="text/javascript" src="/static/web/js/jquery.min.js"></script>
+<script src="/static/web/js/detail.js"></script>
+<script type="text/javascript" src="/static/web/js/jquery.page.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url:"/web/getClassPage",
+            data:{
+                pageNow:1,
+                pageSize:5,
+                classId:classId
+            },
+            success:function(res){
+                var listHtml = "";
+                var articleList = res.articleList;
+                for (var i = 0; i < articleList.length; i++) {
+                    listHtml += "<li>\n" +
+                        "<img src=\"/static/web/img/rArrow.png\"/>" +
+                        "<a href='/web/detail?articleId=" + articleList[i].articleId + "' target='_blank' >" +
+                        articleList[i].title +
+                        "</a>" +
+                        "</li>";
+                }
+                $("#list").html(listHtml);
+
+                $(".tcdPageCode").createPage({
+                    pageCount:res.pageCount,
+                    current:1,
+                    backFn:function(p){
+                        $.ajax({
+                            url:"/web/getClassPage",
+                            data:{
+                                pageNow:p,
+                                pageSize:5,
+                                classId:classId
+                            },
+                            success:function(res){
+                                var listHtml = "";
+                                var articleList = res.articleList;
+                                for (var i = 0; i < articleList.length; i++) {
+                                    listHtml += "<li>\n" +
+                                        "<img src=\"/static/web/img/rArrow.png\"/>" +
+                                        "<a href='/web/detail?articleId=" + articleList[i].articleId + "' target='_blank' >" +
+                                        articleList[i].title +
+                                        "</a>" +
+                                        "</li>";
+                                }
+                                $("#list").html(listHtml);
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+    });
+    
+
+</script>
+</html>

@@ -1,0 +1,63 @@
+{
+  "data": [
+    {
+      "text": "用户管理（权限管理）",
+      "icon": "&#xe620;",
+      "subset": [
+        {
+          "text": "用户管理",
+          "icon": "&#xe621;",
+          "href": "/admin/user"
+        }
+      ]
+    },
+    {
+      "text": "菜单管理（父子）",
+      "icon": "&#xe620;",
+      "subset": [
+        {
+          "text": "菜单管理",
+          "icon": "&#xe621;",
+          "href": "/admin/menu"
+        }
+      ]
+    },
+    {
+      "text": "内容信息管理",
+      "icon": "&#xe620;",
+      "subset": [
+        {
+          "text": "文章管理",
+          "icon": "&#xe621;",
+          "href": "/articleClass"
+        },
+        {
+          "text": "banner管理",
+          "icon": "&#xe621;",
+          "href": "/banner"
+        },
+        {
+          "text": "中部nav管理",
+          "icon": "&#xe621;",
+          "href": "/middleNav"
+        },
+        {
+          "text": "二维码图片",
+          "icon": "&#xe621;",
+          "href": "/singleUrl"
+        }
+      ]
+    },
+    {
+      "text": "留言管理",
+      "icon": "&#xe620;",
+      "subset": [
+        {
+          "text": "留言管理",
+          "icon": "&#xe621;",
+          "href": "/book"
+        }
+      ]
+    }
+  ]
+}
