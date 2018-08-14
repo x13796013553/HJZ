@@ -2,12 +2,13 @@
 function convert(rows) {//默认三级  List集合
     // 返回true：是父菜单  返回false：不是父菜单
     function exists(row) {
-        if (row.parentId == 0) {
+        console.log(row.className);
+        console.log(row.parentId);
+        if (row.parentId == 0 || row.parentId == null) {
             return true;
         } else {
             return false;
         }
-
     }
 
     var nodes = [];

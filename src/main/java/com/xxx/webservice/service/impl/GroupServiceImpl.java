@@ -91,7 +91,6 @@ public class GroupServiceImpl implements GroupService {
             map.put("msg", e.getMessage());
             return map;
         }
-
     }
 
     // 用户查看菜单权限
@@ -278,6 +277,11 @@ public class GroupServiceImpl implements GroupService {
             map.put("msg",e.getMessage());
             return map;
         }
+    }
+
+    @Override
+    public String deleteGroupClass(Integer classId) {
+        return null;
     }
 
 }

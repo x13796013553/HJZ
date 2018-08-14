@@ -64,13 +64,18 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
-<script th:inline="javascript" >
-    var classId = [[${classId}]];
-    $("#classId").val(classId);
-</script>
+
 
 <script src="/static/admin/js/article.js"></script>
 <script src="/static/admin/frame/layui/layui.js"></script>
+<script th:inline="javascript" >
+    var classId = [[${classId}]];
+    layui.use(['table', 'layer', 'tree'], function () {//layui 模块引用，根据需要自行修改
+        var layer = layui.layer, table = layui.table;
+        var $ = layui.jquery;  // 用于异步加载树定义jquery
+        $("#classId").val(classId);
+    });
+</script>
 <script>
     // 配置数据表格来源
     var tableOptions = {
@@ -110,7 +115,6 @@
             success: function (data) {
                 layui.tree({
                     elem: '#tree' //传入元素选择器
-
                     , click: function (item) { //点击节点回调
                         // 加载中...
                         var loadIndex = layer.load(2, {shade: false});
@@ -120,7 +124,7 @@
                         reloadTable(item);
                     }
                     , nodes: convert(data.list)
-                    ,spread: true
+                    , spread: true
                 });
             }
         });

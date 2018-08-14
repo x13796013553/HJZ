@@ -91,8 +91,9 @@ public class ArticleClassServiceImpl implements ArticleClassService {
                 }
                 // 删除文章
                 articleMapper.deleteByPrimaryKey(article.getArticleId());
-
             }
+            // 删除权限分类
+//            groupService.de
             // 删除分类
             articleClassMapper.deleteByPrimaryKey(classId);
 

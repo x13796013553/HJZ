@@ -45,8 +45,10 @@ function changeSc() {
         $("head").append("<link rel=\"stylesheet\" href=\"/static/web/css/style-1600.css\">");
     }else if (clientWidth == 1366) {
         $("head").append("<link rel=\"stylesheet\" href=\"/static/web/css/style-1366.css\">");
+    }else if(clientWidth == 1440){
+        $("head").append("<link rel=\"stylesheet\" href=\"/static/web/css/style-1440.css\">");
     }else {
-        $("head").append("<link rel=\"stylesheet\" href=\"/static/web/css/style.css\">");
+        $("head").append("<link rel=\"stylesheet\" href=\"/static/web/css/style-1600.css\">");
     }
 }
 

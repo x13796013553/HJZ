@@ -45,4 +45,7 @@ public interface GroupService {
     // 删除角色
     public Map deleteGroup(String groupId);
 
+    // 删除文章分类，更新角色
+    public String deleteGroupClass(Integer classId);
+
 }
