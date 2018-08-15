@@ -111,6 +111,9 @@
                 </div>
                 <div class="vo-div" style="margin-top: 10px;">
                     <select id="callbacks">
+                        <option >
+                            <a >校内机构链接</a>
+                        </option>
                         <option th:each="xn,xnStat:${xnjg}" th:attr="value=${xn.getIfHref()}">
                             <a th:text="${xn.getTitle()}"></a>
                         </option>
@@ -119,6 +122,9 @@
 
                 <div class="vo-div" style="margin-top: 10px;">
                     <select id="callbacks2">
+                        <option >
+                            <a >校外机构链接</a>
+                        </option>
                         <option th:each="xw,xnStat:${xwjg}" th:attr="value=${xw.getIfHref()}">
                             <a th:text="${xw.getTitle()}"></a>
                         </option>
@@ -127,6 +133,9 @@
 
                 <div class="vo-div" style="margin-top: 10px;">
                     <select id="callbacks3">
+                        <option >
+                            <a >院校链接</a>
+                        </option>
                         <option th:each="xw,xnStat:${yxlj}" th:attr="value=${xw.getIfHref()}">
                             <a th:text="${xw.getTitle()}"></a>
                         </option>
@@ -134,7 +143,11 @@
                 </div>
 
                 <div class="vo-div" style="margin-top: 10px;">
+
                     <select id="callbacks4">
+                        <option >
+                            <a >友情链接</a>
+                        </option>
                         <option th:each="xw,xnStat:${yqlj}" th:attr="value=${xw.getIfHref()}">
                             <a th:text="${xw.getTitle()}"></a>
                         </option>
