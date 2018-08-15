@@ -93,7 +93,11 @@ public class ArticleClassServiceImpl implements ArticleClassService {
                 articleMapper.deleteByPrimaryKey(article.getArticleId());
             }
             // 删除权限分类
-//            groupService.de
+            String retGro = groupService.deleteGroupClass(classId);
+            if(!"1".equalsIgnoreCase(retGro)){
+                map.put("msg",retGro);
+                return map;
+            }
             // 删除分类
             articleClassMapper.deleteByPrimaryKey(classId);
 

@@ -279,9 +279,40 @@ public class GroupServiceImpl implements GroupService {
         }
     }
 
+    // 删除文章时，再删除权限里面的菜单
     @Override
     public String deleteGroupClass(Integer classId) {
-        return null;
+        // 取出所有的角色
+        String Menu = null;
+        String[] Array = null;
+        String newMenu = null;
+        try {
+            List<XGroup> list = groupMapper.selectByExample(null);
+            for (XGroup group : list) {
+                // 查询权限:开始
+                Menu = "";
+                Array = null;
+                newMenu = "";
+
+                Menu = group.getSelectArticle();
+                Array = Menu.split(",");
+                for (int i = 0; i < Array.length; i++) {
+                    if (!classId.toString().equalsIgnoreCase(Array[i])) {
+                        newMenu += Array[i] + ",";
+                    }
+                }
+                newMenu = newMenu.substring(0, newMenu.length() - 1);
+                group.setSelectArticle(newMenu);
+                // 查询权限：结束
+
+                // 更新新的角色
+                groupMapper.updateByPrimaryKeySelective(group);
+            }
+            return "1";
+
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
 }

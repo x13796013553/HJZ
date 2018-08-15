@@ -139,7 +139,8 @@
             url: "/article/getAllArticleClass",
             type: "post",
             success: function (data) {
-                var select = document.getElementById("classId")
+                $("#createDatetime").val(toDate());
+                var select = document.getElementById("classId");
                 for (var i = 0; i < data.length; i++) {
                     select.options.add(new Option(data[i].className, data[i].classId));
                 }
@@ -205,6 +206,25 @@
     function reloadWindow(classId) {
         layer.close(layer.index);
         window.parent.location.href="/admin/article?classId="+classId;
+    }
+
+    function toDate() {
+        var date = new Date();
+
+        var y = date.getFullYear();
+        var m = date.getMonth()+1;
+        m = m<10?'0'+m:m;
+        var s = date.getSeconds();
+        var d = date.getDate();
+        d = d<10?("0"+d):d;
+        var h = date.getHours();
+        h = h<10?("0"+h):h;
+        var M = date.getMinutes();
+        M = M<10?("0"+M):M;
+        var S = date.getSeconds();
+        S = S<10?("0"+S):s;
+        var str = y+"-"+m+"-"+d;
+        return str;
     }
 
 </script>
