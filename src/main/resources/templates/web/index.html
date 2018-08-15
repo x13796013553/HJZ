@@ -91,7 +91,7 @@
                 </div>
                 <div class="vo-div" style="margin-top: 10px;" th:each="article,articleStat:${cyzy}">
                     <a th:text="${article.getClassName()}"
-                       th:href="@{web/class(classId=${article.getClassId()})}"></a>
+                       th:href="@{web/class(classId=${article.getClassId()})}" target="_blank"></a>
                 </div>
             </div>
             <!--真人图书馆 -->
@@ -101,7 +101,7 @@
                 </div>
                 <div class="vo-div" style="margin-top: 10px;" th:each="article,articleStat:${zrtsg}">
                     <a th:text="${article.getClassName()}"
-                       th:href="@{/web/class(classId=${article.getClassId()})}"></a>
+                       th:href="@{/web/class(classId=${article.getClassId()})}" target="_blank"></a>
                 </div>
             </div>
             <!--机构导航 -->
@@ -115,7 +115,7 @@
                             <a >校内机构链接</a>
                         </option>
                         <option th:each="xn,xnStat:${xnjg}" th:attr="value=${xn.getIfHref()}">
-                            <a th:text="${xn.getTitle()}"></a>
+                            <a th:text="${xn.getTitle()}" target="_blank"></a>
                         </option>
                     </select>
                 </div>
@@ -126,7 +126,7 @@
                             <a >校外机构链接</a>
                         </option>
                         <option th:each="xw,xnStat:${xwjg}" th:attr="value=${xw.getIfHref()}">
-                            <a th:text="${xw.getTitle()}"></a>
+                            <a th:text="${xw.getTitle()}" target="_blank"></a>
                         </option>
                     </select>
                 </div>
@@ -137,7 +137,7 @@
                             <a >院校链接</a>
                         </option>
                         <option th:each="xw,xnStat:${yxlj}" th:attr="value=${xw.getIfHref()}">
-                            <a th:text="${xw.getTitle()}"></a>
+                            <a th:text="${xw.getTitle()}" target="_blank"></a>
                         </option>
                     </select>
                 </div>
@@ -149,7 +149,7 @@
                             <a >友情链接</a>
                         </option>
                         <option th:each="xw,xnStat:${yqlj}" th:attr="value=${xw.getIfHref()}">
-                            <a th:text="${xw.getTitle()}"></a>
+                            <a th:text="${xw.getTitle()}" target="_blank"></a>
                         </option>
                     </select>
                 </div>

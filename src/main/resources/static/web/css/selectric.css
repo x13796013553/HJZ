@@ -26,16 +26,16 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 0 38px 0 30px;
+  margin: 0 14px 0 11px;
   font-size: 12px;
   font-weight: bold;
   line-height: 20px;
   color:#002a89;
   height: 18px;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .selectric .button {
@@ -43,8 +43,8 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 38px;
-  height: 26px;
+  width: 21px;
+  height: 22px;
   line-height: 38px;
   /*background-color: #F8f8f8;*/
   /*color: #BBB;*/
@@ -101,9 +101,9 @@
   opacity: 0.5;
   cursor: default;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .selectric-hide-select {
@@ -221,9 +221,9 @@
   background: none !important;
   color: #666 !important;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .selectric-items .selectric-group .selectric-group-label {
@@ -231,9 +231,9 @@
   padding-left: 10px;
   cursor: default;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background: none;
   color: #444;
 }

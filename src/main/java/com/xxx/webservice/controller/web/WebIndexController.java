@@ -106,7 +106,6 @@ public class WebIndexController {
             System.out.println("首页TMD出问题了！！！" + e.getMessage());
             return "web/index";
         }
-
     }
 
     // 三级页面
