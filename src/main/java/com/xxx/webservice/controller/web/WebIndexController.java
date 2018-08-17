@@ -87,6 +87,8 @@ public class WebIndexController {
                     tzgg.add(article);
                 } else if (article.getClassId() == 31) {
                     zydt.add(article);
+                } else if (article.getClassId() == 45){
+                    model.addAttribute("Logo",article.getTitleImage());
                 }
             }
 

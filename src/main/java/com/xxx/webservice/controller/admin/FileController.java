@@ -32,7 +32,7 @@ public class FileController {
             for (int i = 0; i < file.length; i++) {
                 String nowString = ConvertUtil.getNowString("yyyy-MM-dd");
                 mapAdd = FileUtil.simUpload("/WEB-INF/classes/static/admin/upload/file/" + nowString, file[i], request,
-                        IPUtils.getIP(URI.create(request.getRequestURL().toString())) + "/WEB-INF/classes/static/admin/upload/file/" + nowString);
+                        IPUtils.getIP(URI.create(request.getRequestURL().toString())) + "/static/admin/upload/file/" + nowString);
             }
             if(file.length == 1){
                 map.put("titleImage",mapAdd.get("localUrl"));
