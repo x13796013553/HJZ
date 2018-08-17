@@ -35,60 +35,79 @@
         </div>
     </div>
 
-    <!--<div class="layui-upload">-->
-    <!--<button type="button" class="layui-btn" id="test1">展播图</button>-->
-    <!--<div class="layui-upload-list">-->
-    <!--<img class="layui-upload-img" id="demo1">-->
-    <!--<p id="demoText"></p>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-inline">
-        <label class="layui-form-label">日期</label>
-        <div class="layui-input-inline">
-            <input type="text" name="createDatetime" id="createDatetime" placeholder="yyyy-MM-dd" class="layui-input">
-        </div>
-    </div>
-
 
     <div class="layui-form-item">
-        <label class="layui-form-label">是否跳转到外部链接？</label>
+        <label class="layui-form-label">上传展播图片</label>
         <div class="layui-input-block">
-            <input type="radio" name="isHref" value="1" title="是" onclick="changeTypeAdd('url')" lay-filter="radio">
-            <input type="radio" name="isHref" value="0" title="否" checked="" onclick="changeTypeAdd('content')"
-                   lay-filter="radio">
-        </div>
-    </div>
+            <div class="layui-upload">
+                <button type="button" class="layui-btn layui-btn-normal" id="imgList">选择文件</button>
+                <div class="layui-upload-list">
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th>文件名</th>
+                            <th>大小</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="uploadList"></tbody>
+                    </table>
+                </div>
 
-    <div class="layui-form-item" id="url">
-        <label class="layui-form-label">链接地址</label>
-        <div class="layui-input-block">
-            <input type="text" name="ifHref" id="ifHref" autocomplete="off" placeholder="请输入链接地址" class="layui-input">
+                <button type="button" class="layui-btn" id="imgListAction">开始上传</button>
+            </div>
         </div>
-    </div>
 
-    <div class="layui-form-item" id="content">
-        <label class="layui-form-label">文章内容</label>
-        <div class="layui-input-block">
-            <script id="editor" type="text/plain"></script>
+        <div class="layui-inline">
+            <label class="layui-form-label">日期</label>
+            <div class="layui-input-inline">
+                <input type="text" name="createDatetime" id="createDatetime" placeholder="yyyy-MM-dd"
+                       class="layui-input">
+            </div>
         </div>
-    </div>
-
-    <div class="layui-form-item" style="margin-top: 20px;">
-        <label class="layui-form-label">父菜单</label>
-        <div class="layui-input-block">
-            <select name="iconUrl" id="classId">
-                <option value=""></option>
-            </select>
-        </div>
-    </div>
 
 
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <a class="layui-btn" onclick="subMitAdd()">立即提交</a>
-            <a type="reset" class="layui-btn layui-btn-primary">重置</a>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否跳转到外部链接？</label>
+            <div class="layui-input-block">
+                <input type="radio" name="isHref" value="1" title="是" onclick="changeTypeAdd('url')" lay-filter="radio">
+                <input type="radio" name="isHref" value="0" title="否" checked="" onclick="changeTypeAdd('content')"
+                       lay-filter="radio">
+            </div>
         </div>
-    </div>
+
+        <div class="layui-form-item" id="url">
+            <label class="layui-form-label">链接地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="ifHref" id="ifHref" autocomplete="off" placeholder="请输入链接地址"
+                       class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item" id="content">
+            <label class="layui-form-label">文章内容</label>
+            <div class="layui-input-block">
+                <script id="editor" type="text/plain"></script>
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="margin-top: 20px;">
+            <label class="layui-form-label">父菜单</label>
+            <div class="layui-input-block">
+                <select name="iconUrl" id="classId">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <a class="layui-btn" onclick="subMitAdd()">立即提交</a>
+                <a type="reset" class="layui-btn layui-btn-primary">重置</a>
+            </div>
+        </div>
 </form>
 
 
@@ -99,12 +118,13 @@
 <script src="/static/admin/frame/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-
-    layui.use(['form', 'layedit', 'laydate'], function () {
+    var titleImage = "";
+    layui.use(['form', 'layedit', 'laydate', 'upload'], function () {
         var form = layui.form
             , layer = layui.layer
             , layedit = layui.layedit
-            , laydate = layui.laydate;
+            , laydate = layui.laydate
+            , upload = layui.upload;
         var $ = layui.jquery;
 
         //日期
@@ -144,8 +164,64 @@
                 for (var i = 0; i < data.length; i++) {
                     select.options.add(new Option(data[i].className, data[i].classId));
                 }
-                $("#classId").find("option[value='"+classId_pre+"']").prop("selected",true);
+                $("#classId").find("option[value='" + classId_pre + "']").prop("selected", true);
                 form.render('select');
+            }
+        });
+
+        var uploadList = $('#uploadList')
+            , uploadListIns = upload.render({
+            elem: '#imgList'
+            , url: '/upload/'
+            , accept: 'file'
+            , multiple: true
+            , auto: false
+            , bindAction: '#imgListAction'
+            , choose: function (obj) {
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function (index, file, result) {
+                    var tr = $(['<tr id="upload-' + index + '">'
+                        , '<td>' + file.name + '</td>'
+                        , '<td>' + (file.size / 1014).toFixed(1) + 'kb</td>'
+                        , '<td>等待上传</td>'
+                        , '<td>'
+                        , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        , '</td>'
+                        , '</tr>'].join(''));
+
+                    //单个重传
+                    tr.find('.demo-reload').on('click', function () {
+                        obj.upload(index, file);
+                    });
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function () {
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+
+                    uploadList.append(tr);
+                });
+            }
+            , done: function (res, index, upload) {
+                if (res.status == "1") { //上传成功
+                    var tr = uploadList.find('tr#upload-' + index)
+                        , tds = tr.children();
+                    tds.eq(2).html('<input type="hidden" id="titleImage" value="'+ res.titleImage +'"></input><span style="color: #5FB878;">上传成功</span>');
+                    tds.eq(3).html(''); //清空操作
+
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+                }
+                this.error(index, upload);
+            }
+            , error: function (index, upload) {
+                var tr = uploadList.find('tr#upload-' + index)
+                    , tds = tr.children();
+                tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
             }
         });
 
@@ -169,9 +245,9 @@
         var ifHref = $("#ifHref").val();
 
         var isHref = $("input:radio[name='isHref']:checked").val();
-        if(isHref == 1){
+        if (isHref == 1) {
             articleContent = "";
-        }else{
+        } else {
             ifHref = "";
         }
         var classId = $("#classId").val();
@@ -183,6 +259,8 @@
         formData.append("articleContent", articleContent);
         formData.append("ifHref", ifHref);
         formData.append("classId", classId);
+        titleImage = $("#titleImage").val();
+        formData.append("titleImage",titleImage);
 
         $.ajax({
             url: "/article/exeAddArticle",
@@ -193,37 +271,36 @@
             success: function (data) {
                 if (data.status == "1") {
                     layer.msg("新增成功");
-                    setTimeout("reloadWindow('"+ classId +"')", 2000);
+                    setTimeout("reloadWindow('" + classId + "')", 2000);
                 } else {
                     layer.msg("新增失败！！" + data.msg);
                     return false;
                 }
             }
-
-        })
+        });
     }
 
     function reloadWindow(classId) {
         layer.close(layer.index);
-        window.parent.location.href="/admin/article?classId="+classId;
+        window.parent.location.href = "/admin/article?classId=" + classId;
     }
 
     function toDate() {
         var date = new Date();
 
         var y = date.getFullYear();
-        var m = date.getMonth()+1;
-        m = m<10?'0'+m:m;
+        var m = date.getMonth() + 1;
+        m = m < 10 ? '0' + m : m;
         var s = date.getSeconds();
         var d = date.getDate();
-        d = d<10?("0"+d):d;
+        d = d < 10 ? ("0" + d) : d;
         var h = date.getHours();
-        h = h<10?("0"+h):h;
+        h = h < 10 ? ("0" + h) : h;
         var M = date.getMinutes();
-        M = M<10?("0"+M):M;
+        M = M < 10 ? ("0" + M) : M;
         var S = date.getSeconds();
-        S = S<10?("0"+S):s;
-        var str = y+"-"+m+"-"+d;
+        S = S < 10 ? ("0" + S) : s;
+        var str = y + "-" + m + "-" + d;
         return str;
     }
 

@@ -16,7 +16,7 @@ function convert(rows) {//默认三级  List集合
         if (exists(row) == true) {
             nodes.push({
                 id: row.classId,
-                spread: true,
+                spread: false,
                 name: row.className + "(" + row.classId + ")" + "<a style='width:40px;font-size:12px;' href=\"javascript:editParentData('" + row.classId + "');\" >编辑</a>" + "<a style='width:40px;font-size:12px;' href=\"javascript:deleteParentData('" + row.classId + "');\" >删除</a>",
                 parent: null
             });
@@ -37,7 +37,7 @@ function convert(rows) {//默认三级  List集合
             if (parseInt(nodes[j].id) == parseInt(row.parentId)) {
                 var child = {
                     id: row.classId,
-                    spread: true,
+                    spread: false,
                     name: row.className + "(" + row.classId + ")" + "<a style='width:40px;font-size:12px;' href='javascript:editParentData(" + row.classId + ");' >编辑</a>" + "<a style='width:40px;font-size:12px;' href='javascript:deleteParentData(" + row.classId + ");' >删除</a>",
                     parentId: nodes[j].id,
                     parentName: nodes[j].name
@@ -67,7 +67,7 @@ function convert(rows) {//默认三级  List集合
                     if (parseInt(sec[m].id) == parseInt(row.parentId)) {
                         var child = {
                             id: row.classId,
-                            spread: true,
+                            spread: false,
                             name: row.className + "(" + row.classId + ")" + "<a style='width:40px;font-size:12px;' href='javascript:editParentData(" + row.classId + ");' >编辑</a>" + "<a style='width:40px;font-size:12px;' href='javascript:deleteParentData(" + row.classId + ");' >删除</a>",
                             parentId: sec[m].id,
                             parentName: sec[m].name

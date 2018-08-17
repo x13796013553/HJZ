@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>黑龙江建筑职业技术学院-图文信息中心</title>
-    <meta name=”renderer” content=”webkit” />
-    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name=”renderer” content=”webkit”/>
+    <meta name="viewport"
+          content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <link rel="stylesheet" id="theme" href="/static/web/css/selectric.css">
     <link rel="stylesheet" href="/static/web/css/prism.css">
 </head>
@@ -111,8 +112,8 @@
                 </div>
                 <div class="vo-div" style="margin-top: 10px;">
                     <select id="callbacks">
-                        <option >
-                            <a >校内机构链接</a>
+                        <option>
+                            <a>校内机构链接</a>
                         </option>
                         <option th:each="xn,xnStat:${xnjg}" th:attr="value=${xn.getIfHref()}">
                             <a th:text="${xn.getTitle()}" target="_blank"></a>
@@ -122,8 +123,8 @@
 
                 <div class="vo-div" style="margin-top: 10px;">
                     <select id="callbacks2">
-                        <option >
-                            <a >校外机构链接</a>
+                        <option>
+                            <a>校外机构链接</a>
                         </option>
                         <option th:each="xw,xnStat:${xwjg}" th:attr="value=${xw.getIfHref()}">
                             <a th:text="${xw.getTitle()}" target="_blank"></a>
@@ -133,8 +134,8 @@
 
                 <div class="vo-div" style="margin-top: 10px;">
                     <select id="callbacks3">
-                        <option >
-                            <a >院校链接</a>
+                        <option>
+                            <a>院校链接</a>
                         </option>
                         <option th:each="xw,xnStat:${yxlj}" th:attr="value=${xw.getIfHref()}">
                             <a th:text="${xw.getTitle()}" target="_blank"></a>
@@ -143,10 +144,9 @@
                 </div>
 
                 <div class="vo-div" style="margin-top: 10px;">
-
                     <select id="callbacks4">
-                        <option >
-                            <a >友情链接</a>
+                        <option>
+                            <a>友情链接</a>
                         </option>
                         <option th:each="xw,xnStat:${yqlj}" th:attr="value=${xw.getIfHref()}">
                             <a th:text="${xw.getTitle()}" target="_blank"></a>

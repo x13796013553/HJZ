@@ -108,7 +108,7 @@ public class ArticleController {
     // 执行新增文章
     @RequestMapping("/article/exeAddArticle")
     @ResponseBody
-    public Map exeAddArticle(String title, String author, String createDatetime, String articleContent, String ifHref, Integer classId) {
+    public Map exeAddArticle(String title, String author, String createDatetime, String articleContent, String ifHref, Integer classId,String titleImage) {
         XArticle article = new XArticle();
         article.setTitle(title);
         article.setAuthor(author);
@@ -116,6 +116,7 @@ public class ArticleController {
         article.setArticleContent(articleContent);
         article.setIfHref(ifHref);
         article.setClassId(classId);
+        article.setTitleImage(titleImage);
 
         return articleService.addArticle(article);
     }
