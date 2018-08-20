@@ -126,7 +126,6 @@ public class ArticleServiceImpl implements ArticleService {
 				Integer ret = FileUtil.deleteFile(article.getTitleImage(), request);
 				if (ret != 1){
 					map.put("msg","文件删除失败");
-					return map;
 				}
 			}
 			articleMapper.updateByPrimaryKeySelective(article);
