@@ -31,11 +31,13 @@ public class FileController {
             // 上传新文件
             for (int i = 0; i < file.length; i++) {
                 String nowString = ConvertUtil.getNowString("yyyy-MM-dd");
+//                mapAdd = FileUtil.simUpload("/WEB-INF/classes/static/admin/upload/file/" + nowString, file[i], request,
+//                        IPUtils.getIP(URI.create(request.getRequestURL().toString())) + "/static/admin/upload/file/" + nowString);
                 mapAdd = FileUtil.simUpload("/WEB-INF/classes/static/admin/upload/file/" + nowString, file[i], request,
-                        IPUtils.getIP(URI.create(request.getRequestURL().toString())) + "/static/admin/upload/file/" + nowString);
+                        "/static/admin/upload/file/" + nowString);
             }
             if(file.length == 1){
-                map.put("titleImage",mapAdd.get("localUrl"));
+                map.put("titleImage",mapAdd.get("url"));
             }
             map.put("status", "1");
             return map;

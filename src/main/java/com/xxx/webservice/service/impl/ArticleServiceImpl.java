@@ -12,8 +12,11 @@ import com.xxx.webservice.pojo.XArticleClass;
 import com.xxx.webservice.pojo.XArticleExample;
 import com.xxx.webservice.service.ArticleService;
 import com.xxx.webservice.utils.ConvertUtil;
+import com.xxx.webservice.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Service
@@ -77,10 +80,16 @@ public class ArticleServiceImpl implements ArticleService {
 
 	// 删除文章
 	@Override
-	public Map deleteArticleByArticleId(Integer articleId) {
-		System.out.println(articleId);
+	public Map deleteArticleByArticleId(Integer articleId, HttpServletRequest request) {
 		Map map = new HashMap();
 		try{
+			// 检查是否有图片，如果有，先删除图片
+			XArticle article = articleMapper.selectByPrimaryKey(articleId);
+			Integer ret = FileUtil.deleteFile(article.getTitleImage(),request);
+			if(ret != 1){
+				map.put("msg","文件删除失败");
+				return map;
+			}
 			articleMapper.deleteByPrimaryKey(articleId);
 			map.put("status","1");
 			return map;
@@ -109,9 +118,17 @@ public class ArticleServiceImpl implements ArticleService {
 
 	// 更新文章
 	@Override
-	public Map updateArticleById(XArticle article) {
+	public Map updateArticleById(XArticle article,HttpServletRequest request) {
 		Map map = new HashMap();
 		try{
+			// 检查是否有图片，如果有图片，先删除图片
+			if(article.getTitleImage() != null && !"".equalsIgnoreCase(article.getTitleImage())){
+				Integer ret = FileUtil.deleteFile(article.getTitleImage(), request);
+				if (ret != 1){
+					map.put("msg","文件删除失败");
+					return map;
+				}
+			}
 			articleMapper.updateByPrimaryKeySelective(article);
 			map.put("status","1");
 			return map;

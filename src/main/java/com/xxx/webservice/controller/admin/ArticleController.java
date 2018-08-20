@@ -88,7 +88,6 @@ public class ArticleController {
         //带参数从数据库里查询出来放到eilist的集合里
         List<XArticle> articleList = articleService.getArticleByClassId(before, after, classId);
 
-
         int count = articleService.getArticleCountByClassId(classId);
         //用json来传值
         JSONArray json = JSONArray.fromObject(articleList);
@@ -108,7 +107,7 @@ public class ArticleController {
     // 执行新增文章
     @RequestMapping("/article/exeAddArticle")
     @ResponseBody
-    public Map exeAddArticle(String title, String author, String createDatetime, String articleContent, String ifHref, Integer classId,String titleImage) {
+    public Map exeAddArticle(String title, String author, String createDatetime, String articleContent, String ifHref, Integer classId, String titleImage) {
         XArticle article = new XArticle();
         article.setTitle(title);
         article.setAuthor(author);
@@ -124,8 +123,8 @@ public class ArticleController {
     // 删除文章
     @RequestMapping("/article/deleteArticleById")
     @ResponseBody
-    public Map deleteArticleById(Integer articleId) {
-        return articleService.deleteArticleByArticleId(articleId);
+    public Map deleteArticleById(Integer articleId, HttpServletRequest request) {
+        return articleService.deleteArticleByArticleId(articleId, request);
     }
 
     // 编辑页面
@@ -145,7 +144,7 @@ public class ArticleController {
     // 执行编辑
     @RequestMapping("/article/exeEditArticle")
     @ResponseBody
-    public Map exeEditArticle(Integer articleId, String title, String author, String createDatetime, String articleContent, String ifHref, Integer classId) {
+    public Map exeEditArticle(HttpServletRequest request, Integer articleId, String title, String author, String createDatetime, String articleContent, String ifHref, Integer classId, String titleImage) {
         XArticle article = new XArticle();
         article.setArticleId(articleId);
         article.setTitle(title);
@@ -154,7 +153,9 @@ public class ArticleController {
         article.setArticleContent(articleContent);
         article.setIfHref(ifHref);
         article.setClassId(classId);
-        return articleService.updateArticleById(article);
+        article.setTitleImage(titleImage);
+
+        return articleService.updateArticleById(article, request);
     }
 
 

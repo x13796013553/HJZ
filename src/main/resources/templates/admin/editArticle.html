@@ -17,7 +17,6 @@
 </fieldset>
 
 
-
 <form class="layui-form" action="">
     <div class="layui-form-item">
         <label class="layui-form-label">文章标题</label>
@@ -33,13 +32,20 @@
         </div>
     </div>
 
-    <!--<div class="layui-upload">-->
-    <!--<button type="button" class="layui-btn" id="test1">展播图</button>-->
-    <!--<div class="layui-upload-list">-->
-    <!--<img class="layui-upload-img" id="demo1">-->
-    <!--<p id="demoText"></p>-->
-    <!--</div>-->
-    <!--</div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">上传展播图片</label>
+        <input id="titleImage" type="hidden">
+        <div class="layui-input-block">
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test1">上传图片</button>
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img" id="demo1" width="100px">
+                    <p id="demoText"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="layui-inline">
         <label class="layui-form-label">日期</label>
         <div class="layui-input-inline">
@@ -98,11 +104,12 @@
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
 
-    layui.use(['form', 'layedit', 'laydate'], function () {
+    layui.use(['form', 'layedit', 'laydate', 'upload'], function () {
         var form = layui.form
             , layer = layui.layer
             , layedit = layui.layedit
-            , laydate = layui.laydate;
+            , laydate = layui.laydate
+            , upload = layui.upload;
         var $ = layui.jquery;
 
         //日期
@@ -135,8 +142,8 @@
         //表单初始赋值
         $.ajax({
             url: "/article/getEditArticleData",
-            data:{
-                articleId:articleId
+            data: {
+                articleId: articleId
             },
             type: "post",
             success: function (data) {
@@ -147,21 +154,50 @@
                 $("#author").val(article.author);
                 $("#createDatetime").val(data.createDatetime);
                 $("#ifHref").val(article.ifHref);
-                if(article.ifHref == "" || article.ifHref == null || article.ifHref == undefined){
+                if (article.ifHref == "" || article.ifHref == null || article.ifHref == undefined) {
                     $("#url").css("display", "none");
                     $("#content").css("display", "block");
-                }else if(article.articleContent == "" || article.articleContent == null || article.articleContent == undefined){
+                } else if (article.articleContent == "" || article.articleContent == null || article.articleContent == undefined) {
                     $("#url").css("display", "block");
                     $("#content").css("display", "none");
                 }
                 ue.setContent(article.articleContent);
 
-                var select = document.getElementById("classId")
+                var select = document.getElementById("classId");
                 for (var i = 0; i < classList.length; i++) {
                     select.options.add(new Option(classList[i].className, classList[i].classId));
                 }
-                $("#classId").find("option[value='"+article.classId+"']").prop("selected",true);
+                $("#classId").find("option[value='" + article.classId + "']").prop("selected", true);
+
+                $("#demo1").attr('src', article.titleImage);
                 form.render('select');
+            }
+        });
+
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            , url: '/upload/'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                if (res.status == "1") {
+                    $("#titleImage").val(res.titleImage);
+                    return layer.msg('上传成功');
+                }
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
             }
         });
 
@@ -194,7 +230,9 @@
         formData.append("articleContent", articleContent);
         formData.append("ifHref", ifHref);
         formData.append("classId", classId);
-        formData.append("articleId",articleId);
+        formData.append("articleId", articleId);
+        var titleImage = $("#titleImage").val();
+        formData.append("titleImage",titleImage);
 
         $.ajax({
             url: "/article/exeEditArticle",
@@ -205,7 +243,7 @@
             success: function (data) {
                 if (data.status == "1") {
                     layer.msg("编辑成功");
-                    setTimeout("reloadWindow('"+ classId +"')", 2000);
+                    setTimeout("reloadWindow('" + classId + "')", 2000);
                 } else {
                     layer.msg("编辑失败！！" + data.msg);
                     return false;
@@ -216,18 +254,18 @@
 
     function reloadWindow(classId) {
         layer.close(layer.index);
-        window.parent.location.href="/admin/article?classId="+classId;
+        window.parent.location.href = "/admin/article?classId=" + classId;
     }
 
-    function timetrans(date){
-        var date = new Date(date*1000);//如果date为13位不需要乘1000
+    function timetrans(date) {
+        var date = new Date(date * 1000);//如果date为13位不需要乘1000
         var Y = date.getFullYear() + '-';
-        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
         var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
         var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
-        var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
-        var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
-        return Y+M+D+h+m+s;
+        var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+        var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+        return Y + M + D + h + m + s;
     }
 
 </script>
