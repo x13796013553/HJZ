@@ -30,4 +30,7 @@ public interface ArticleClassService {
 	// 根据用户所拥有的权限获取能看到的文章
 	public List<XArticleClass> getArticleClassByUserId(String userId);
 
+	// 编辑更新分类
+	public Map exeEditArticleClass(XArticleClass articleClass);
+
 }

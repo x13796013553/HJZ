@@ -151,5 +151,20 @@ public class ArticleClassServiceImpl implements ArticleClassService {
         }
     }
 
+    // 编辑更新分类
+    @Override
+    public Map exeEditArticleClass(XArticleClass articleClass) {
+        Map map = new HashMap();
+        try {
+            articleClassMapper.updateByPrimaryKeySelective(articleClass);
+            map.put("status","1");
+            return map;
+        }catch (Exception e){
+            map.put("msg",e.getMessage());
+            return map;
+        }
+
+    }
+
 
 }

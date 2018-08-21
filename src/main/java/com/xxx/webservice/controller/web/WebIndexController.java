@@ -7,11 +7,12 @@ import com.xxx.webservice.service.ArticleClassService;
 import com.xxx.webservice.service.ArticleService;
 import com.xxx.webservice.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Controller
+@PropertySource(value = "classpath:config/application-dev.properties")
 public class WebIndexController {
 
     @Autowired
@@ -32,6 +34,37 @@ public class WebIndexController {
 
     @Autowired
     private RedisUtils redisUtils;
+
+    @Value("${cyzy}")
+    private String cyzyPro;
+
+    @Value("${zrtsg}")
+    private String zrtsgPro;
+
+    @Value("${xnjg}")
+    private String xnjgPro;
+
+    @Value("${xwjg}")
+    private String xwjgPro;
+
+    @Value("${yxlj}")
+    private String yxljPro;
+
+    @Value("${yqlj}")
+    private String yqljPro;
+
+    @Value("${tzgg}")
+    private String tzggPro;
+
+    @Value("${zydt}")
+    private String zydtPro;
+
+    @Value("${Logo}")
+    private String LogoPro;
+
+    @Value("${bottom}")
+    private String bottomPro;
+
 
     // 首页
     @RequestMapping("/")
@@ -66,29 +99,32 @@ public class WebIndexController {
             }
 
             // 常用资源
+            System.out.println("常用资源："+cyzyPro);
             for (int i = 0; i < articleClassList.size(); i++) {
-                if (articleClassList.get(i).getParentId() == 14) {
+                if (articleClassList.get(i).getParentId() == Integer.parseInt(cyzyPro)) {
                     cyzy.add(articleClassList.get(i));
-                } else if (articleClassList.get(i).getParentId() == 20) {
+                } else if (articleClassList.get(i).getParentId() == Integer.parseInt(zrtsgPro)) {
                     zrtsg.add(articleClassList.get(i));
                 }
             }
 
             for (XArticle article : articleList) {
-                if (article.getClassId() == 26) {
+                if (article.getClassId() == Integer.parseInt(xnjgPro)) {
                     xnjg.add(article);
-                } else if (article.getClassId() == 27) {
+                } else if (article.getClassId() == Integer.parseInt(xwjgPro)) {
                     xwjg.add(article);
-                } else if (article.getClassId() == 28) {
+                } else if (article.getClassId() == Integer.parseInt(yxljPro)) {
                     yxlj.add(article);
-                } else if (article.getClassId() == 29) {
+                } else if (article.getClassId() == Integer.parseInt(yqljPro)) {
                     yqlj.add(article);
-                } else if (article.getClassId() == 30) {
+                } else if (article.getClassId() == Integer.parseInt(tzggPro)) {
                     tzgg.add(article);
-                } else if (article.getClassId() == 31) {
+                } else if (article.getClassId() == Integer.parseInt(zydtPro)) {
                     zydt.add(article);
-                } else if (article.getClassId() == 45){
+                } else if (article.getClassId() == Integer.parseInt(LogoPro)){
                     model.addAttribute("Logo",article.getTitleImage());
+                } else if (article.getClassId() == Integer.parseInt(bottomPro)){
+                    model.addAttribute("bottom",article.getArticleContent());
                 }
             }
 

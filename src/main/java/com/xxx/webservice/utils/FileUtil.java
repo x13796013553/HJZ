@@ -62,25 +62,30 @@ public class FileUtil {
 
     // 删除文件
     public static Integer deleteFile(String path, HttpServletRequest request) {
-        if(path == null) {
-            path = "";
-        }
-        String realPath = request.getSession().getServletContext().getRealPath("");
-        realPath = realPath.replace("/", "\\"); // 数据库中取出的路径转换成真实路径
-        File file = new File(realPath + path);
-        boolean b;
-        if (file.exists() && file.isFile()) {
-            b = file.delete();
-            if (b == true) {
-                // 删除成功返回1
-                return 1;
-            } else {
-                // 删除失败返回-2
-                return -2;
+        try{
+            if(path == null) {
+                path = "";
             }
+            String realPath = request.getSession().getServletContext().getRealPath("");
+            realPath = realPath.replace("/", "\\"); // 数据库中取出的路径转换成真实路径
+            File file = new File(realPath + path);
+            boolean b;
+            if (file.exists() && file.isFile()) {
+                b = file.delete();
+                if (b == true) {
+                    // 删除成功返回1
+                    return 1;
+                } else {
+                    // 删除失败返回-2
+                    return -2;
+                }
+            }
+            // 文件不存在，返回-1
+            return -1;
+        }catch (Exception e){
+            return 0;
         }
-        // 文件不存在，返回-1
-        return -1;
+
     }
 
     // 优化文件大小

@@ -67,6 +67,25 @@ public class ArticleController {
         return articleClassService.deleteArticleClassById(classId, request);
     }
 
+    // 编辑分类
+    @RequestMapping("/article/editArticleClass")
+    public String showEditArticleClassPage(Integer classId, Model model) {
+        model.addAttribute("class", articleClassService.getArticleClass(classId));
+        return "admin/editArticleClass";
+    }
+
+    // 执行编辑
+    @RequestMapping("/article/exeEditArticleClass")
+    @ResponseBody
+    public Map exeEditArticleClass(Integer classId, String className, Integer parentId) {
+        XArticleClass articleClass = new XArticleClass();
+        articleClass.setClassName(className);
+        articleClass.setParentId(parentId);
+        articleClass.setClassId(classId);
+
+        return articleClassService.exeEditArticleClass(articleClass);
+    }
+
     //获取树的信息
     @RequestMapping("/article/getTree")
     @ResponseBody

@@ -17,7 +17,7 @@ function convert(rows) {//默认三级  List集合
             nodes.push({
                 id: row.classId,
                 spread: false,
-                name: row.className + "(" + row.classId + ")" + "<a style='width:40px;font-size:12px;' href=\"javascript:editParentData('" + row.classId + "');\" >编辑</a>" + "<a style='width:40px;font-size:12px;' href=\"javascript:deleteParentData('" + row.classId + "');\" >删除</a>",
+                name: row.className + "(" + row.classId + ")" + "<a style='width:40px;font-size:12px;' href=\"javascript:editData('" + row.classId + "');\" >编辑</a>" + "<a style='width:40px;font-size:12px;' href=\"javascript:deleteParentData('" + row.classId + "');\" >删除</a>",
                 parent: null
             });
         }
@@ -38,7 +38,7 @@ function convert(rows) {//默认三级  List集合
                 var child = {
                     id: row.classId,
                     spread: false,
-                    name: row.className + "(" + row.classId + ")" + "<a style='width:40px;font-size:12px;' href='javascript:editParentData(" + row.classId + ");' >编辑</a>" + "<a style='width:40px;font-size:12px;' href='javascript:deleteParentData(" + row.classId + ");' >删除</a>",
+                    name: row.className + "(" + row.classId + ")" + "<a style='width:40px;font-size:12px;' href='javascript:editData(" + row.classId + ");' >编辑</a>" + "<a style='width:40px;font-size:12px;' href='javascript:deleteParentData(" + row.classId + ");' >删除</a>",
                     parentId: nodes[j].id,
                     parentName: nodes[j].name
                 };
@@ -68,7 +68,7 @@ function convert(rows) {//默认三级  List集合
                         var child = {
                             id: row.classId,
                             spread: false,
-                            name: row.className + "(" + row.classId + ")" + "<a style='width:40px;font-size:12px;' href='javascript:editParentData(" + row.classId + ");' >编辑</a>" + "<a style='width:40px;font-size:12px;' href='javascript:deleteParentData(" + row.classId + ");' >删除</a>",
+                            name: row.className + "(" + row.classId + ")" + "<a style='width:40px;font-size:12px;' href='javascript:editData(" + row.classId + ");' >编辑</a>" + "<a style='width:40px;font-size:12px;' href='javascript:deleteParentData(" + row.classId + ");' >删除</a>",
                             parentId: sec[m].id,
                             parentName: sec[m].name
                         };
